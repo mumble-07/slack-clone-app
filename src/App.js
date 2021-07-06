@@ -3,9 +3,10 @@ import Header from './Components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <>
+    Insert individual components here.
+    <Header />
+    </>
   );
 }
 
