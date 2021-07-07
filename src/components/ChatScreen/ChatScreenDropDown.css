@@ -1,0 +1,28 @@
+.drop-down-header {
+  width: 100vw;
+  height: 3vh;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.pin-icon {
+  color: black;
+  transform: rotate(290deg);
+}
+.pin-items {
+  color: lightgray;
+  margin-left: 2%;
+}
+
+.add-book-mark {
+  color: lightgray;
+  margin-left: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
