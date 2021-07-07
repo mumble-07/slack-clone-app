@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import HistoryIcon from '@material-ui/icons/History';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
-import logo from "../../logo.svg";
+import logo from "../../assets/logo.svg";
 
 
 const Header = () => {
