@@ -1,0 +1,200 @@
+/* page header styling */
+
+.pageHeader{
+    padding: 48px 0 30px;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3,1fr);
+};
+
+.centerCol{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rightCol{
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    font-size: 13px;
+    padding-right: 40px;
+}
+
+/* page body styling */
+
+.pageBody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pageBody h2{
+    align-items: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 46px;
+    max-width: 700px;
+    text-align: center;
+    letter-spacing: -.75px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.subHeading{
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 32px;
+    color: #454245;
+    max-width: 700px;
+    text-align: center;
+}
+
+.pageSignIn{
+    width: 400px;
+}
+
+.pageButtons{
+    display: flex;
+    flex-direction: column;
+    margin: 12px;
+}
+
+.pageButtons button{
+    margin-bottom: 12px;
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.horizontalContentRule{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.leftLine, .rightLine{
+    border: none;
+    border-top: 1px solid #ddd;
+    flex-grow: 1;
+}
+
+.centerLine{
+    padding: 0 20px;
+}
+
+.customLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 376px;
+}
+
+.customLogin input{
+    padding: 11px 12px 13px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 1.33333333;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #868686;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.customLogin button{
+    color: #fff;
+    background-color: #4a154b;
+    border: none;
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    height: 44px;
+    min-width: 96px;
+    padding: 0 16px 3px;
+}
+
+.googleLogin{
+    background-color: #fff;
+    border: 2px solid #4285f4;
+    color: #4285f4;
+    font-size: 18px;
+    font-weight: 700;
+    height: 44px;
+    min-width: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appleLogin{
+    font-size: 18px;
+    font-weight: 700;
+    height: 44px;
+    min-width: 96px; 
+    background-color: #fff;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instructions{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 12px 24px;
+    color: darkgrey;
+    background-color: whitesmoke;
+    border-radius: 8px;
+}
+
+.instructions span{
+    padding-left: 12px;
+    text-align: justify;
+}
+
+/* footer styling */
+
+.pageFooter{
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.pageFooter a{
+    text-decoration: none;
+    color: darkgrey;
+}
+
+.pageFooterChild{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.pageFooterItems{
+    margin-right: 15px;
+    font-size:15px;
+}
+
+.pageFooterItems:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.regionLabel{
+    margin-left: 1px;
+}
