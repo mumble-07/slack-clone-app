@@ -1,0 +1,20 @@
+.chat-screen-body {
+  width: 100%;
+  height: 88vh;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+}
+
+.user-chat-header {
+  width: 100px;
+  height: 60px;
+  padding-right: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-user img {
+  width: 100%;
+  cursor: pointer;
+}

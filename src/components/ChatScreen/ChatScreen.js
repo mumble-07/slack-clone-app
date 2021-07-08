@@ -1,12 +1,14 @@
 import "./ChatScreen.css";
 import ChatScreenHeader from "./ChatScreenHeader";
-import ChatScreenHeadersss from "./ChatScreenHeader";
 import ChatScreenDropDown from "./ChatScreenDropDown";
+import ChatScreenBody from "./ChatScreenBody";
+
 const ChatScreen = () => {
   return (
     <div>
       <ChatScreenHeader />
       <ChatScreenDropDown />
+      <ChatScreenBody />
     </div>
   );
 };
