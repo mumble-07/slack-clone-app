@@ -5,6 +5,7 @@
   grid-template-columns: 15% 85%;
   grid-template-rows: 4% 96%;
   overflow: hidden;
+  border: none;
 }
 
 .main-page-header {

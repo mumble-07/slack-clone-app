@@ -1,6 +1,6 @@
 .chat-screen-header {
   width: 100%;
-  height: 10%;
+  height: 5%;
   border: 1px solid lightgray;
   color: lightgrey;
   display: flex;
@@ -21,25 +21,39 @@
 }
 
 .lock-icon {
+  font-size: 20px;
   color: black;
 }
 
 .chat-screen-label {
   color: black;
-  font-size: 120%;
+  font-size: 18px;
+}
+
+.chat-screen-header-right-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .avatar-icons {
   box-sizing: border-box;
   width: 40px;
   height: 40px;
-  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 20px;
   border: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .avatar-icons img {
-  width: 100%;
+  width: 90%;
   cursor: pointer;
+}
+
+.call-icon {
+  font-size: 20px;
+  color: black;
 }
