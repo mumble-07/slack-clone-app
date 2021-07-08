@@ -1,0 +1,42 @@
+/* #chat-screen {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5% 5% 80% 20%;
+  flex-direction: column;
+}
+#chat-screen-header {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#chat-screen-drop-down {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#chat-screen-body {
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#chat-box {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+} */
+
+#chat-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,28 +1,52 @@
 .drop-down-header {
-  width: 100vw;
-  height: 3vh;
+  width: 100%;
+  height: 3%;
   border: 1px solid lightgray;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
+  border-top: none;
 }
 
-.pin-icon {
-  color: black;
-  transform: rotate(290deg);
-}
 .pin-items {
-  color: lightgray;
+  color: #454245;
   margin-left: 2%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.pin-icon {
+  font-size: 70%;
+  margin-right: 4px;
+  color: #454245;
+  transform: rotate(290deg);
+  cursor: pointer;
+}
+
+.pin-items h3 {
+  font-size: 70%;
+  color: lightgray;
 }
 
 .add-book-mark {
-  color: lightgray;
+  color: #454245;
   margin-left: 2%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.add-book-mark-plus {
+  font-size: 70%;
+  margin-right: 4px;
+}
+.add-book-mark h3 {
+  font-size: 70%;
+  color: lightgray;
 }
