@@ -1,4 +1,6 @@
+import {Link} from 'react-router-dom';
 import classes from './Login.module.css';
+
 
 const LoginHeader =() => {
     return (
@@ -13,9 +15,9 @@ const LoginHeader =() => {
                 <div className={classes.rightCol}>
                     <div>
                         New to Slack? <br></br>
-                        <a href="/">
+                        <Link to="/Signup">
                             Create an account
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

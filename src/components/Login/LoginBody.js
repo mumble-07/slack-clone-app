@@ -1,9 +1,34 @@
-import classes from './Login.module.css'
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import axios from 'axios';
+import classes from './Login.module.css';
 import { FcGoogle } from "react-icons/fc";
 import {DiApple} from "react-icons/di";
 import {WiStars} from "react-icons/wi";
 
+const initialState = {
+    email: '',
+    password: '',
+}
+
 const LoginBody = () => {
+    const [formData,setFormData] = useState(initialState)
+    const [user, setUser] = useState([])
+
+    const history = useHistory();
+
+    const loginUser = () => {
+        const oldUser = {email: formData.email, password: formData.password}
+        console.log(oldUser)
+        axios.post('http://206.189.91.54//api/v1/auth/sign_in', oldUser)
+        .then(res => {
+            console.log(res.data)
+            setUser(res.data)
+            history.push('/Header')
+        })
+        .catch(error => console.error('Error fetching data from API'));
+}
+
     return(
         <>
             <div className={classes.pageBody}>
@@ -23,8 +48,9 @@ const LoginBody = () => {
                         <hr className={classes.rightLine}></hr>
                     </div>
                     <div className={classes.customLogin}>
-                        <input type="email" placeholder="name@work-email.com"/>
-                        <button> Sign In with Email</button>
+                        <input type="email" placeholder="name@work-email.com" onChange={(e)=> setFormData({...formData,email:e.target.value})}/>
+                        <input type="password" placeholder="password" onChange={(e)=> setFormData({...formData,password:e.target.value})}/>
+                        <button onClick={loginUser}> Sign In with Email</button>
                         <div className={classes.instructions}><WiStars size={70} className={classes.instructionIcon}/><span>We'll email you a magic code for a password free sign-in. Or you can <a href="/">sign in manually.</a></span></div>
                     </div>
                 </div>
