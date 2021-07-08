@@ -7,7 +7,8 @@ const UserContext = createContext({
         client: '',
         expiry: '',
         uid: '',
-    }
+    },
+    userList: [],
 })
 
 

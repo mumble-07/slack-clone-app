@@ -10,8 +10,8 @@ import UserInfo from "./UserInfo";
 
 const Header = () => {
 
-
     return (
+        
         <div className="header__container">
             <div className="header">
                 <div className="header__menu"><MenuIcon /></div>
@@ -27,13 +27,7 @@ const Header = () => {
                     </div>
                     <HelpOutlineIcon />
                 </div>
-<<<<<<< HEAD
-                <div className="header__user-info">
-                    <img src={logo}  alt="logo-pic"/>
-                </div>
-=======
                 <UserInfo />
->>>>>>> 13aa7aba17bb1ddea7636ad14fdb876684f5e5a6
             </div>
         </div>
     )
