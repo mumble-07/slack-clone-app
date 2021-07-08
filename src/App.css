@@ -1,4 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
 body{
   --slack-color: #3f0f40;
+  font-family: 'Noto Sans', sans-serif;
 }
 
+h2{
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+}
+
+button{
+  cursor: pointer;
+}
+
+button:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2)
+}

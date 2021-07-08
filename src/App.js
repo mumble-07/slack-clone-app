@@ -1,11 +1,11 @@
 import './App.css';
-import Header from './Header/Header';
+import Login from './components/Login/Login';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <>
-    Insert individual components here.
-    <Header />
+
     </>
   );
 }
