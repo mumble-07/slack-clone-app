@@ -32,6 +32,12 @@ body {
     cursor: pointer;
 }
 
+.history-buttons {
+    width: 150px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 .header__search {
     width: 80%;
@@ -43,4 +49,5 @@ body {
     align-items: center;
     padding: 0 5px;
     cursor: pointer;
+    margin-right: 20px;
 }

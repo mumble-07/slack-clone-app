@@ -41,6 +41,11 @@
     margin-inline: auto;
 }
 
+.user__photo.profile-view img {
+    width: 100%;
+}
+
+
 .user-profile__content > h2{
     align-self: center;
 }

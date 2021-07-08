@@ -44,6 +44,10 @@
     height: 40px;
 }
 
+.user-info .user__photo img {
+    width: 100%;
+}
+
 .user__profile {
     width: 80%;
     display: flex;
@@ -51,8 +55,13 @@
     align-items: flex-start;
 }
 
-.user__profile h3 {
+.user__profile h4 {
     margin: 0;
+}
+
+.user__profile > span {
+    font-size: 14px;
+    color: gray;
 }
 
 .btn.update-status {

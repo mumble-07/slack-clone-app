@@ -16,9 +16,11 @@ const Header = () => {
             <div className="header">
                 <div className="header__menu"><MenuIcon /></div>
                 <div className="header__history">
-                    <ArrowBackIcon />
-                    <ArrowForwardIcon />
-                    <HistoryIcon />
+                    <div className="history-buttons">
+                        <ArrowBackIcon />
+                        <ArrowForwardIcon />
+                        <HistoryIcon />
+                    </div>
                     <div className="header__search">
                         <span>Search</span>
                         <SearchIcon />

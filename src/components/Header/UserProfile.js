@@ -1,19 +1,17 @@
-import { useContext } from "react";
-import { UserProfileContext } from "./UserInfoContext"
 import "./UserProfile.css";
 import CloseIcon from '@material-ui/icons/Close';
-import userImage from "./userImage.jpg";
+import userImage from "../../assets/userImage.jpg";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
     const userName = "Juan dela Cruz";
     const displayName = "Juan dela Cruz";
     const userEmail = "juan@gmail.com";
 
-    const [displayProfile, setDisplayProfile] = useContext(UserProfileContext)
+
     const displayProfileHandler = () => {
-        setDisplayProfile(displayProfile => !displayProfile);
+        props.showProfile(false)
     }
 
 
