@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import HistoryIcon from '@material-ui/icons/History';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
-import logo from "../../assets/logo.svg";
+import UserInfo from "./UserInfo";
 
 
 const Header = () => {
@@ -16,18 +16,18 @@ const Header = () => {
             <div className="header">
                 <div className="header__menu"><MenuIcon /></div>
                 <div className="header__history">
-                    <ArrowBackIcon />
-                    <ArrowForwardIcon />
-                    <HistoryIcon />
+                    <div className="history-buttons">
+                        <ArrowBackIcon />
+                        <ArrowForwardIcon />
+                        <HistoryIcon />
+                    </div>
                     <div className="header__search">
                         <span>Search</span>
                         <SearchIcon />
                     </div>
                     <HelpOutlineIcon />
                 </div>
-                <div className="header__user-info">
-                    <img src={logo} />
-                </div>
+                <UserInfo />
             </div>
         </div>
     )
