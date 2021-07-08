@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import HistoryIcon from '@material-ui/icons/History';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SearchIcon from '@material-ui/icons/Search';
-import logo from "../logo.svg";
+import UserInfo from "./UserInfo";
 
 
 const Header = () => {
@@ -25,9 +25,7 @@ const Header = () => {
                     </div>
                     <HelpOutlineIcon />
                 </div>
-                <div className="header__user-info">
-                    <img src={logo} />
-                </div>
+                <UserInfo />
             </div>
         </div>
     )
