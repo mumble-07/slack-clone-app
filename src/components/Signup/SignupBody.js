@@ -1,5 +1,6 @@
-import {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useState, useContext} from 'react';
+import {useHistory} from 'react-router-dom';
+import UserContext from '../../api/user-context.js';
 import axios from 'axios';
 import classes from './Signup.module.css';
 
@@ -11,17 +12,16 @@ const initialState = {
 
 const SignupBody = () => {
     const [formData,setFormData] = useState(initialState)
-    const [user, setUser] = useState([])
+    const {userDetails} = useContext(UserContext)
 
     const history = useHistory();
     
     const loginUser = () => {
             const newUser = {email: formData.email, password: formData.password, password_confirmation: formData.password_confirmation}
-            console.log(newUser)
             axios.post('http://206.189.91.54//api/v1/auth/', newUser)
             .then(res => {
-                console.log(res.data)
-                setUser(res.data)
+                const {data} = res.data;
+                userDetails.push(data);
                 history.push('/Header')
             })
             .catch(error => console.error('Error fetching data from API'));
@@ -44,9 +44,9 @@ const SignupBody = () => {
                         <div className={classes.instructions}>
                             <span className={classes.emailNotifs}> <input type="checkbox" name="emailnotifs" id="emailnotifs"/> <label htmlFor="emailnotifs">Its okay to send me emails about Slack.</label></span>
                             <span className={classes.terms}>By continuing, you’re agreeing to our 
-                                <a href="#"> Customer Terms of Service,</a> 
-                                <a href="#"> Privacy Policy,</a>
-                                <a href="#"> Cookie Policy.</a>
+                                <a href="/#"> Customer Terms of Service,</a> 
+                                <a href="/#"> Privacy Policy,</a>
+                                <a href="/#"> Cookie Policy.</a>
                             </span>
                         </div>
                     </div>

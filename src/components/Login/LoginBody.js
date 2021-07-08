@@ -1,5 +1,7 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import {useHistory} from 'react-router-dom';
+import UserContext from '../../api/user-context.js';
+
 import axios from 'axios';
 import classes from './Login.module.css';
 import { FcGoogle } from "react-icons/fc";
@@ -13,21 +15,21 @@ const initialState = {
 
 const LoginBody = () => {
     const [formData,setFormData] = useState(initialState)
-    const [user, setUser] = useState([])
-
+    const {userDetails,setUpHeaders}  = useContext(UserContext)
     const history = useHistory();
 
     const loginUser = () => {
         const oldUser = {email: formData.email, password: formData.password}
-        console.log(oldUser)
         axios.post('http://206.189.91.54//api/v1/auth/sign_in', oldUser)
         .then(res => {
-            console.log(res.data)
-            setUser(res.data)
-            history.push('/Header')
+            const {data} = res.data;
+            const {"access-token":accessToken,client,expiry,uid} = res.headers;
+            userDetails.push(data);
+            setUpHeaders(accessToken,client,expiry,uid);
+            history.push('/Header');
         })
         .catch(error => console.error('Error fetching data from API'));
-}
+    }
 
     return(
         <>
@@ -48,9 +50,9 @@ const LoginBody = () => {
                         <hr className={classes.rightLine}></hr>
                     </div>
                     <div className={classes.customLogin}>
-                        <input type="email" placeholder="name@work-email.com" onChange={(e)=> setFormData({...formData,email:e.target.value})}/>
-                        <input type="password" placeholder="password" onChange={(e)=> setFormData({...formData,password:e.target.value})}/>
-                        <button onClick={loginUser}> Sign In with Email</button>
+                            <input type="email" placeholder="name@work-email.com" onChange={(e)=> setFormData({...formData,email:e.target.value})}/>
+                            <input type="password" placeholder="password" onChange={(e)=> setFormData({...formData,password:e.target.value})}/>
+                            <button onClick={loginUser}> Sign In with Email</button>
                         <div className={classes.instructions}><WiStars size={70} className={classes.instructionIcon}/><span>We'll email you a magic code for a password free sign-in. Or you can <a href="/">sign in manually.</a></span></div>
                     </div>
                 </div>

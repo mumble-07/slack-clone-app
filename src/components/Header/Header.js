@@ -26,7 +26,7 @@ const Header = () => {
                     <HelpOutlineIcon />
                 </div>
                 <div className="header__user-info">
-                    <img src={logo} />
+                    <img src={logo}  alt="logo-pic"/>
                 </div>
             </div>
         </div>
