@@ -22,7 +22,7 @@ const SignupBody = () => {
             .then(res => {
                 const {data} = res.data;
                 userDetails.push(data);
-                history.push('/Header')
+                history.push('/MainPage')
             })
             .catch(error => console.error('Error fetching data from API'));
     }
