@@ -3,8 +3,7 @@ import React, { useContext, useState } from "react";
 import UserContext from "../../api/user-context";
 import axios from 'axios';
 import SendIcon from '@material-ui/icons/Send';
-
-
+import FlashOnIcon from "@material-ui/icons/FlashOn";
 
 
 const ChatBox = () => {
@@ -56,11 +55,17 @@ const ChatBox = () => {
 
   return (
     <div className="chat-box">
+
       {/* <h3>Chat Here</h3> */}
       {/* <textarea className="input-message" name="message" placeholder="Message **Name**" autoFocus value={message} onChange={(e) => setMessage(e.target.value)} ></textarea> */}
       <div className="input-message" contentEditable={true} spellcheck={false} onInput={(e) => setMessage(e.target.innerHTML)}></div>
       <div className="input-message-options">
         <button className="send-message" onClick={sendMessageHandler}>Send<SendIcon/></button>
+
+      <h3>Chat Here</h3>
+      <div className="chat-box-icons">
+        <FlashOnIcon />
+
       </div>
     </div>
   );

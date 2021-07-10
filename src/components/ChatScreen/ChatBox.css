@@ -3,7 +3,7 @@
   height: auto;
   max-height: 30%;
   margin: 0 auto;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
   border: 1.5px solid lightgrey;
   border-radius: 10px;
   overflow: visible;
@@ -35,4 +35,14 @@
   display: flex;
   /* justify-content: flex-end; */
   align-items: center;
+}
+.chat-box h3 {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.chat-box-icons {
+  width: 98%;
+  height: 10%;
+  margin: 0 auto;
 }
