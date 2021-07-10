@@ -15,7 +15,7 @@ const initialState = {
 
 const LoginBody = () => {
     const [formData,setFormData] = useState(initialState)
-    const {userDetails,setUpHeaders, userListHeaders}  = useContext(UserContext)
+    const {userDetails,setUpHeaders}  = useContext(UserContext)
     const history = useHistory();
 
 
@@ -26,7 +26,6 @@ const LoginBody = () => {
             const {data} = res.data;
             const {"access-token":accessToken,client,expiry,uid} = res.headers;
             userDetails.push(data);
-            console.log(data)
             setUpHeaders(accessToken,client,expiry,uid);
             history.push('/MainPage');
         })

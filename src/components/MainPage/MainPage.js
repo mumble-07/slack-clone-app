@@ -3,10 +3,11 @@ import ChatScreen from "../ChatScreen/ChatScreen";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { Link } from 'react-router-dom';
+import UsersList from '../AddUsers/UsersList';
 
 const Mainpage = () => {
   return (
-    <Link to="/MainPage">
+    <Link to="/MainPage" style={{textDecoration: "none"}}>
     <div className="main-page">
       <div className="main-page-header">
         <Header />
