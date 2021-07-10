@@ -61,11 +61,10 @@ const ChatBox = () => {
       <div className="input-message" contentEditable={true} spellcheck={false} onInput={(e) => setMessage(e.target.innerHTML)}></div>
       <div className="input-message-options">
         <button className="send-message" onClick={sendMessageHandler}>Send<SendIcon/></button>
-
+      </div>
       <h3>Chat Here</h3>
       <div className="chat-box-icons">
         <FlashOnIcon />
-
       </div>
     </div>
   );
