@@ -1,8 +1,38 @@
 .chat-box {
   width: 98%;
-  height: 12%;
+  height: auto;
+  max-height: 30%;
   margin: 0 auto;
   margin-bottom: 1%;
   border: 1.5px solid lightgrey;
   border-radius: 10px;
+  overflow: visible;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.input-message {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 16px;
+  overflow-y: scroll;
+  text-decoration: none;
+  color: black;
+}
+
+
+.input-message-options {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
