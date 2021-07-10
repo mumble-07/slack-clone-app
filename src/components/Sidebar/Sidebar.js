@@ -1,9 +1,60 @@
-import React from "react";
+import {useState, useContext,useEffect} from "react";
+import UserContext from '../../api/user-context.js';
+import axios from 'axios';
 import "./Sidebar.css";
 import 'boxicons';
 
+import SidebarChannel from './SidebarChannel';
+import SidebarDM from './SidebarDM';
+import { FormatColorTextOutlined } from "@material-ui/icons";
 
 const Sidebar = () => {
+
+    const [toggleChannel, setToggleChannel] = useState(false)
+    const [toggleDM, setToggleDM] = useState(false)
+
+    const toggleChannelHandler = () => {
+        setToggleChannel(prevValue => !prevValue)
+    }
+
+    const toggleDMHandler = () => {
+        setToggleDM(prevValue => !prevValue)
+    }
+
+    const {userListHeaders,channelList, rawUserList} = useContext(UserContext);
+
+    useEffect( () => {
+        axios.get('http://206.189.91.54//api/v1/channels', {headers: userListHeaders})
+        .then(res => {
+            const {data} = res;
+            if(data.errors = "No available channels"){ 
+                console.log(data.errors);
+                return 
+            }
+            channelList.push(data)
+        })
+        .catch(error => console.error('Error fetching data from API'))
+        }
+        , []
+    )
+
+    console.log(rawUserList)
+
+    useEffect( () => {
+        axios.get('http://206.189.91.54//api/v1/users', {headers: userListHeaders})
+        .then(res => {
+            const {data} = res;
+            if(data.length == 0){ 
+                console.log("No available users");
+                return 
+            }
+            rawUserList.push(data.data)
+        })
+        .catch(error => console.error('Error fetching data from API'))
+        }
+        , []
+    )
+
     return (
         <div className="wrapper">
         <div className="sidebar">
@@ -15,7 +66,7 @@ const Sidebar = () => {
                 <li>
                     <a href="/#">
                         <box-icon name='message-alt-detail' ></box-icon>
-                        <span class="links_name">Threads</span>
+                        <span className="links_name">Threads</span>
                     </a>
                 </li>
                 <li>
@@ -38,33 +89,28 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <div className="icon-link">
-                    <a href="/#">
-                        <box-icon name='chevron-right-circle' ></box-icon>
+                    <div className="channelsHandler" onClick={toggleChannelHandler}> 
+                        {!toggleChannel && <box-icon name='chevron-right-circle' ></box-icon>}
+                        {toggleChannel && <box-icon name ='chevron-down-circle'></box-icon>}
                         <span className="links_name">Channels</span>
-                    </a>
+                    </div>
                     </div>
                     <ul className="sub-menu">
-                        <li><a href="/#"><box-icon name='lock-alt' ></box-icon>locked channel</a></li>
                         <li><a href="/#"><box-icon name='lock-alt' ></box-icon>batch 9</a></li>
-                        <li><a href="/#"><box-icon name='lock-alt' ></box-icon>unlocked channel</a></li>
-                        <li><a href="/#"><box-icon name='lock-alt' ></box-icon>batch 10</a></li>
+                        {toggleChannel && <SidebarChannel/>}
                         <li><a href="/#"><box-icon name='lock-alt' ></box-icon>Add channels</a></li>
-
                     </ul>
                 </li>
                 <li>
                     <div className="icon-link">
-                    <a href="/#">
-                        <box-icon name='chevron-right-circle' ></box-icon>
+                    <div className="dmHandler" onClick={toggleDMHandler}>
+                        {!toggleDM && <box-icon name='chevron-right-circle' ></box-icon>}
+                        {toggleDM && <box-icon name='chevron-down-circle' ></box-icon>}
                         <span className="links_name">Direct Messages</span>
-                    </a>
+                    </div>
                     </div>
                     <ul className="sub-menu">
-                        <li><a href="/#"><box-icon name='user-circle' ></box-icon>Andy</a></li>
-                        <li><a href="/#"><box-icon name='user-circle' ></box-icon>Brando</a></li>
-                        <li><a href="/#"><box-icon name='user-circle' ></box-icon>Chester</a></li>
-                        <li><a href="/#"><box-icon name='user-circle' ></box-icon>Michael</a></li>
-                        <li><a href="/#"><box-icon name='plus-circle'></box-icon>Add teamates</a></li>
+                        {toggleDM && <SidebarDM className="sidebarDM"/>}
                     </ul>
                 </li>
             </ul>

@@ -9,6 +9,8 @@ const UserContext = createContext({
         uid: '',
     },
     rawUserList: [],
+    channelList: [],
+    dmList: [],
 })
 
 
