@@ -1,8 +1,19 @@
 .chat-box {
   width: 98%;
-  height: 12%;
+  height: 10%;
   margin: 0 auto;
-  margin-bottom: 1%;
+  margin-bottom: 3%;
   border: 1.5px solid lightgrey;
   border-radius: 10px;
+}
+
+.chat-box h3 {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.chat-box-icons {
+  width: 98%;
+  height: 10%;
+  margin: 0 auto;
 }
