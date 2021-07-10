@@ -26,7 +26,7 @@ const LoginBody = () => {
             const {"access-token":accessToken,client,expiry,uid} = res.headers;
             userDetails.push(data);
             setUpHeaders(accessToken,client,expiry,uid);
-            history.push('/Header');
+            history.push('/MainPage');
         })
         .catch(error => console.error('Error fetching data from API'));
     }
