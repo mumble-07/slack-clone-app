@@ -14,7 +14,7 @@ const SidebarChannel = () => {
             <>    
             {channelList.map(channel => {
                 return (
-                    <li><box-icon name='lock-alt' ></box-icon> channel</li>
+                    <li><box-icon name='lock-alt' ></box-icon> {channel}</li>
                     )
                 })}
             </>

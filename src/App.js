@@ -17,7 +17,6 @@ function App() {
             <Route path='/MainPage' component={MainPage}/>
           </Switch>
         </Router>
-        {/* <UsersList/> */}
       </UserProvider>
     </>
   );
