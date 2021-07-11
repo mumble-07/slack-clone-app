@@ -30,6 +30,11 @@
   font-size: 18px;
 }
 
+.chat-screen-label.new-message {
+  margin-left: 20px;
+}
+
+
 .chat-screen-header-right-side {
   display: flex;
   flex-direction: row;

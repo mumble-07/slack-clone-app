@@ -8,7 +8,13 @@ const UserContext = createContext({
         expiry: '',
         uid: '',
     },
-    userList: [],
+    rawUserList: [],
+    channelList: [],
+    dmList: [],
+    chatScreenData: {
+        type: "channel",
+        receivers: ["batch9"],
+    },
 })
 
 

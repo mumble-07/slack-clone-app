@@ -1,6 +1,6 @@
 .drop-down-header {
   width: 100%;
-  height: 4%;
+  min-height: 4%;
   border: 1px solid lightgray;
   display: flex;
   flex-direction: row;
@@ -8,6 +8,13 @@
   align-items: center;
   margin: 0 auto;
   border-top: none;
+  position: relative;
+}
+
+.to__newUser {
+  font-weight: 100;
+  margin-left: 20px;
+  font-size: 16px;
 }
 
 .pin-items {
@@ -50,3 +57,76 @@
   font-size: 70%;
   color: lightgray;
 }
+
+.receiver-list {
+  color: black;
+  list-style: none;
+  z-index: 5;
+  width: 95%;
+  height: 300px;
+  position: absolute;
+  bottom: calc(-292px);
+  left: 50px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+.receiver-list > li {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.receiver-list > li:hover {
+  background-color: #2d62d6;
+  color: white;
+}
+
+.receiver-list > li > img {
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.selected-receivers {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  margin-left: 10px;
+  padding: 10px 0;
+}
+
+.selected-receivers > div {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  background-color: #a8c2f393;;
+  border-radius: 5px;
+  padding-right: 5px;
+  overflow: hidden;
+}
+
+.selected-receivers > div > img {
+  height: 100%;
+}
+
+.selected-receivers > div .MuiSvgIcon-root {
+  color: gray;
+  font-size: 18px;
+}
+
+.selected-receivers > div .MuiSvgIcon-root:hover {
+  color: black;
+  background: lightgrey
+}
+

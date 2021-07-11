@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Mainpage = () => {
   return (
-    <Link style={{ textDecoration: "none" }} to="/MainPage">
+    <Link to="/MainPage" style={{textDecoration: "none"}} >
       <div className="main-page">
         <div className="main-page-header">
           <Header />

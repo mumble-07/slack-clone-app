@@ -18,11 +18,14 @@ a:visited {
 
 .sidebar {
   height: 100%;
-  width: 270px;
+  width: 100%;
   background: #3f0f40;
   padding: 5px;
 }
 
+.sidebarDM{
+  overflow: scroll;
+}
 .sidebar .channel-details {
   height: 50px;
   width: 100%;

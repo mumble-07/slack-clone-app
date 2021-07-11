@@ -3,8 +3,8 @@
   height: auto;
   max-height: 30%;
   margin: 0 auto;
-  margin-bottom: 3%;
-  border: 1.5px solid lightgrey;
+  margin-bottom: 1%;
+  border: 1.5px solid grey;
   border-radius: 10px;
   overflow: visible;
   position: fixed;
@@ -33,16 +33,41 @@
 
 .input-message-options {
   display: flex;
-  /* justify-content: flex-end; */
+  /* justify-content: flex-end */
   align-items: center;
-}
-.chat-box h3 {
-  font-size: 14px;
-  margin-left: 10px;
+  padding: 5px 20px;
+  border-top: 1px solid lightgray;
 }
 
-.chat-box-icons {
-  width: 98%;
-  height: 10%;
-  margin: 0 auto;
+.send-message-button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  display: grid;
+  place-content: center;
+  background-color: green;
+}
+
+.send-message-button .MuiSvgIcon-root {
+  color: white;
+}
+
+.send-message-button:disabled {
+  background-color: lightgray;
+  cursor: default;
+}
+
+.send-message-button:disabled .MuiSvgIcon-root {
+  color: gray;
+}
+
+
+.input-message:empty::before {
+  content: attr(placeholder);
+  color: #555; 
+}
+
+.input-message:empty:focus::before {
+  content: "";
 }
