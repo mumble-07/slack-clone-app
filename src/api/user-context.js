@@ -13,7 +13,7 @@ const UserContext = createContext({
     dmList: [],
     chatScreenData: {
         type: "channel",
-        receivers: ["batch9"],
+        receivers: [{id: "", name: "batch9"}],
     },
 })
 

@@ -37,7 +37,6 @@ const ChatScreenDropDown = () => {
     const indexOfReceiver = receivers.map(receiver => {return receiver.id }).indexOf(e.target.id);
     receivers.splice(indexOfReceiver, 1);
     const removedReceiver = rawUserList[0].find(user => {
-      console.log(user.id.toString(), e.target.id)
       return user.id.toString() === e.target.id;
     });
 
@@ -58,12 +57,12 @@ const ChatScreenDropDown = () => {
       <>
         <h3 className="to__newUser">To:</h3>
         <div className="selected-receivers">
-          {receivers.map(receiver => {
+          {receivers?.map(receiver => {
             return <div key={receiver.id} id={receiver.id}><img src={user1}/><h5>{receiver.name}</h5><button className="remove-button"id={receiver.id} onClick={removeReceiver} >&times;</button></div>
           })}
         </div>
         <ul className="receiver-list">
-          {remainingUsers[0].map((rawUser, index) => {
+          {remainingUsers[0]?.map((rawUser, index) => {
              const userName = rawUser.name !== null ? rawUser.name : rawUser.email
               return <li key={index} id={rawUser.id} name={userName} onClick={setCurrentReceiver}><img src={user1} />{userName}</li>
             })

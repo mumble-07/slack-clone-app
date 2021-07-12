@@ -8,7 +8,7 @@ import UserContext from "../../api/user-context";
 
 const ChatScreenHeader = () => {
   const {chatScreenData} = useContext(UserContext);
-  const {type, receiver} = chatScreenData;
+  const {type, receivers} = chatScreenData;
 
   return (
     <div className="chat-screen-header">
@@ -16,7 +16,7 @@ const ChatScreenHeader = () => {
       <>
         <button type="button" className="chat-screen-header-button">
           <TiLockClosed className="lock-icon" />
-          <h1 className="chat-screen-label">{receiver}</h1>
+          <h1 className="chat-screen-label">{receivers[0].name}</h1>
           <TiArrowSortedDown />
         </button>
         <div className="chat-screen-header-right-side">
@@ -30,5 +30,6 @@ const ChatScreenHeader = () => {
     </div>
   );
 };
+
 
 export default ChatScreenHeader;

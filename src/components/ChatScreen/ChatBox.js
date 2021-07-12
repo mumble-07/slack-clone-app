@@ -23,14 +23,14 @@ const ChatBox = () => {
     e.preventDefault();
     console.log(userListHeaders)
     console.log(userDetails)
-
+    
     receivers.forEach((receiver) => {
       const sendMessageConfig = {
         method: 'post',
         url: 'http://206.189.91.54//api/v1/messages',
         headers: userListHeaders,
         data: {
-          "receiver_id": receiver[0],
+          "receiver_id": receiver.id,
           "receiver_class": "User",
           "body": JSON.stringify(message),
         },
@@ -47,10 +47,13 @@ const ChatBox = () => {
   }
 
 
+  //CHATBOX PLACEHOLDER
+  const receiverNames = receivers.map(receiver => { return receiver.name });
+  const chatBoxPlaceHolder =  `Message ${receiverNames.length > 0 ? receiverNames.join(", ") : "here..."}`
 
   return (
     <div className="chat-box">
-      <div className="input-message" contentEditable={true} placeholder="Message **User**" spellCheck={false} onInput={inputMessageHandler}></div>
+      <div className="input-message" contentEditable={true} placeholder={chatBoxPlaceHolder} spellCheck={false} onInput={inputMessageHandler}></div>
       <div className="input-message-options">
         <div className="chat-box-icons">
           <FlashOnIcon />
