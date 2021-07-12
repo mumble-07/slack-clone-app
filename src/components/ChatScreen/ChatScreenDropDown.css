@@ -120,13 +120,18 @@
   height: 100%;
 }
 
-.selected-receivers > div .MuiSvgIcon-root {
-  color: gray;
-  font-size: 18px;
+.remove-button {
+  width: 25px;
+  height: 100%;
+  margin-right: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+  display: grid;
+  place-content: center;
+  color: gray
 }
 
-.selected-receivers > div .MuiSvgIcon-root:hover {
+.remove-button:hover {
   color: black;
-  background: lightgrey
 }
-
