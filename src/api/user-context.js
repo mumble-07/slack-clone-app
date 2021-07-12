@@ -11,6 +11,10 @@ const UserContext = createContext({
     rawUserList: [],
     channelList: [],
     dmList: [],
+    chatScreenData: {
+        type: "channel",
+        receivers: ["batch9"],
+    },
 })
 
 

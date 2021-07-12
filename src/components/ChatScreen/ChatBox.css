@@ -1,19 +1,73 @@
 .chat-box {
   width: 98%;
-  height: 10%;
+  height: auto;
+  max-height: 30%;
   margin: 0 auto;
-  margin-bottom: 3%;
-  border: 1.5px solid lightgrey;
+  margin-bottom: 1%;
+  border: 1.5px solid grey;
   border-radius: 10px;
+  overflow: visible;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
-.chat-box h3 {
-  font-size: 14px;
-  margin-left: 10px;
+
+.input-message {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 16px;
+  overflow-y: scroll;
+  text-decoration: none;
+  color: black;
 }
 
-.chat-box-icons {
-  width: 98%;
-  height: 10%;
-  margin: 0 auto;
+
+.input-message-options {
+  display: flex;
+  /* justify-content: flex-end */
+  align-items: center;
+  padding: 5px 20px;
+  border-top: 1px solid lightgray;
+}
+
+.send-message-button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  display: grid;
+  place-content: center;
+  background-color: green;
+}
+
+.send-message-button .MuiSvgIcon-root {
+  color: white;
+}
+
+.send-message-button:disabled {
+  background-color: lightgray;
+  cursor: default;
+}
+
+.send-message-button:disabled .MuiSvgIcon-root {
+  color: gray;
+}
+
+
+.input-message:empty::before {
+  content: attr(placeholder);
+  color: #555; 
+}
+
+.input-message:empty:focus::before {
+  content: "";
 }
