@@ -9,7 +9,7 @@ import SidebarDM from './SidebarDM';
 import { FormatColorTextOutlined } from "@material-ui/icons";
 
 const Sidebar = () => {
-
+    const {chatScreenData} = useContext(UserContext) //modify current receiver when EDIT button is clicked
     const [toggleChannel, setToggleChannel] = useState(false)
     const [toggleDM, setToggleDM] = useState(false)
 
@@ -55,12 +55,16 @@ const Sidebar = () => {
         , []
     )
 
+    const setChatScreenData = () => {
+        chatScreenData["type"] = "new"
+        chatScreenData["receivers"] = [];
+    }
     return (
         <div className="wrapper">
         <div className="sidebar">
             <div className="channel-details">
                 <div className="channel_name">Group 5</div>
-                <box-icon name='edit' ></box-icon>
+                <box-icon name='edit' onClick={setChatScreenData}></box-icon>
             </div>
             <ul className="nav-links">
                 <li>
