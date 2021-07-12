@@ -3,8 +3,9 @@ import UserContext from './user-context.js'
 
 
 const UserProvider = props => {
+
     const {userDetails, userListHeaders,rawUserList, channelList, dmList, chatScreenData} = useContext(UserContext);
-    
+   
     const setUpHeaders = (accessToken,client,expiry,uid) => {
         userListHeaders["access-token"] = accessToken;
         userListHeaders["client"] = client;
