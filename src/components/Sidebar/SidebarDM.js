@@ -1,18 +1,19 @@
 import {useContext} from 'react';
 import UserContext from '../../api/user-context.js';
+import CustomScrollbar from '../../UI/CustomScrollbar';
 
 const SidebarDM = () => {
 
     const {rawUserList} = useContext(UserContext)
     return (
-        <>
+        <CustomScrollbar>
         {rawUserList[0].map(user => {
             return (
-                <li><a href="/#"><box-icon name='user-circle' ></box-icon> {user.email} </a></li>
+                <li style={{fontSize: '10px'}}><box-icon name='user-circle' ></box-icon> {user.email}</li>
             )
         })
         }    
-        </>
+        </CustomScrollbar>
     )
 }
 

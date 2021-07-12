@@ -6,7 +6,7 @@ import 'boxicons';
 
 import SidebarChannel from './SidebarChannel';
 import SidebarDM from './SidebarDM';
-import { FormatColorTextOutlined } from "@material-ui/icons";
+
 
 const Sidebar = () => {
 
@@ -64,28 +64,20 @@ const Sidebar = () => {
             </div>
             <ul className="nav-links">
                 <li>
-                    <a href="/#">
                         <box-icon name='message-alt-detail' ></box-icon>
                         <span className="links_name">Threads</span>
-                    </a>
                 </li>
                 <li>
-                    <a href="/#">
                         <box-icon name='conversation' ></box-icon>
                         <span className="links_name">All DMs</span>
-                    </a>
                 </li>
                 <li>
-                    <a href="/#">
                         <box-icon name='file-blank' ></box-icon>
                         <span className="links_name">Drafts</span>
-                    </a>
                 </li>
                 <li>
-                    <a href="/#">
                         <box-icon name='message-alt-error' ></box-icon>
                         <span className="links_name">Mention & reactions</span>
-                    </a>
                 </li>
                 <li>
                     <div className="icon-link">
@@ -96,9 +88,9 @@ const Sidebar = () => {
                     </div>
                     </div>
                     <ul className="sub-menu">
-                        <li><a href="/#"><box-icon name='lock-alt' ></box-icon>batch 9</a></li>
+                        <li><box-icon name='lock-alt' ></box-icon>batch 9</li>
                         {toggleChannel && <SidebarChannel/>}
-                        <li><a href="/#"><box-icon name='lock-alt' ></box-icon>Add channels</a></li>
+                        <li><box-icon name='lock-alt' ></box-icon>Add channels</li>
                     </ul>
                 </li>
                 <li>
@@ -109,7 +101,7 @@ const Sidebar = () => {
                         <span className="links_name">Direct Messages</span>
                     </div>
                     </div>
-                    <ul className="sub-menu">
+                    <ul className="sidebarDM">
                         {toggleDM && <SidebarDM className="sidebarDM"/>}
                     </ul>
                 </li>
