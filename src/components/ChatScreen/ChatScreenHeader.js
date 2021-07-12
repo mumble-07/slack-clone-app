@@ -16,7 +16,7 @@ const ChatScreenHeader = () => {
       <>
         <button type="button" className="chat-screen-header-button">
           <TiLockClosed className="lock-icon" />
-          <h1 className="chat-screen-label">{receivers[0].name}</h1>
+          <h1 className="chat-screen-label">{receivers[0]?.name}</h1>
           <TiArrowSortedDown />
         </button>
         <div className="chat-screen-header-right-side">

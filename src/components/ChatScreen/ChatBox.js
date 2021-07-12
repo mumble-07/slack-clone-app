@@ -1,5 +1,5 @@
 import "./ChatBox.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import UserContext from "../../api/user-context";
 import axios from 'axios';
 import SendIcon from '@material-ui/icons/Send';
@@ -11,6 +11,7 @@ const ChatBox = () => {
   const {type, receivers} = chatScreenData;
   const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const textBox = useRef();
 
 
   const inputMessageHandler = (e) => {
@@ -23,7 +24,8 @@ const ChatBox = () => {
     e.preventDefault();
     console.log(userListHeaders)
     console.log(userDetails)
-    
+    console.log(receivers)
+
     receivers.forEach((receiver) => {
       const sendMessageConfig = {
         method: 'post',
@@ -31,7 +33,7 @@ const ChatBox = () => {
         headers: userListHeaders,
         data: {
           "receiver_id": receiver.id,
-          "receiver_class": "User",
+          "receiver_class": receiver.type,
           "body": JSON.stringify(message),
         },
         redirect: 'follow'
@@ -39,8 +41,9 @@ const ChatBox = () => {
 
       axios(sendMessageConfig)
       .then((response) => { 
-        alert(`Message Sent, ${JSON.stringify(response.data)}`);
-        console.log(JSON.stringify(response.headers))
+        // alert(`Message Sent, ${JSON.stringify(response.data)}`);
+        console.log(JSON.stringify(response.data))
+        textBox.current.innerHTML = "";
       })
       .catch(function (error) { console.log(error);});
     })
@@ -51,9 +54,10 @@ const ChatBox = () => {
   const receiverNames = receivers.map(receiver => { return receiver.name });
   const chatBoxPlaceHolder =  `Message ${receiverNames.length > 0 ? receiverNames.join(", ") : "here..."}`
 
+
   return (
     <div className="chat-box">
-      <div className="input-message" contentEditable={true} placeholder={chatBoxPlaceHolder} spellCheck={false} onInput={inputMessageHandler}></div>
+      <div className="input-message" ref={textBox} contentEditable={true} placeholder={chatBoxPlaceHolder} spellCheck={false} onInput={inputMessageHandler}></div>
       <div className="input-message-options">
         <div className="chat-box-icons">
           <FlashOnIcon />

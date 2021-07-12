@@ -20,6 +20,7 @@ const ChatScreenDropDown = () => {
     receivers.push({
       id: e.target.id,
       name: e.target.getAttribute("name"),
+      type: e.target.type
     })
 
     setRemainingUsers(prevValue => {
@@ -64,7 +65,7 @@ const ChatScreenDropDown = () => {
         <ul className="receiver-list">
           {remainingUsers[0]?.map((rawUser, index) => {
              const userName = rawUser.name !== null ? rawUser.name : rawUser.email
-              return <li key={index} id={rawUser.id} name={userName} onClick={setCurrentReceiver}><img src={user1} />{userName}</li>
+              return <li key={index} id={rawUser.id} name={userName} type="User" onClick={setCurrentReceiver}><img src={user1} />{userName}</li>
             })
           }
         </ul>
