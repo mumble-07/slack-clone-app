@@ -6,13 +6,6 @@ import CustomScrollbar from '../UI/CustomScrollbar';
 
 const SidebarDM = () => {
 
-<<<<<<< HEAD
-    const history = useHistory()
-    const {rawUserList} = useContext(UserContext)
-    
-    const messagePaneHandler = () => {
-        history.push('/MainPage/MessageContainer')
-=======
     const {rawUserList, chatScreenData} = useContext(UserContext);
 
     const showChatScreen = (e) => {
@@ -24,7 +17,6 @@ const SidebarDM = () => {
         }]
         console.log(chatScreenData)
         // console.log()
->>>>>>> main
     }
 
     return (
@@ -32,11 +24,7 @@ const SidebarDM = () => {
         {rawUserList[0].map(user => {
             const userName = user.name ? user.name : user.email
             return (
-<<<<<<< HEAD
-                <li style={{fontSize: '10px'}} key={user.id} id={user.id} onClick={messagePaneHandler}><box-icon name='user-circle' ></box-icon> {user.email}</li>
-=======
                 <li key={user.id} id={user.id} name={userName} type="User" onClick={showChatScreen} ><a href="/#"><box-icon name='user-circle' ></box-icon> {user.email} </a></li>
->>>>>>> main
             )
         })
         }    

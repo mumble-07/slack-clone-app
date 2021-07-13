@@ -35,8 +35,6 @@ a:visited {
   display: none;
 }
 
-<<<<<<< HEAD
-=======
 .dm-list {
   max-height: 500px;
   overflow: scroll;
@@ -48,7 +46,6 @@ a:visited {
   display: none;
 }
 
->>>>>>> main
 .sidebar .channel-details {
   height: 50px;
   width: 100%;
