@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./UserSettings.css";
 import userImage from "../../assets/userImage.jpg";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import UserContext from "../../api/user-context";
 
 
 
 
 const UserSettings = (props) => {
 
-    const[isUserActive, setUserActive] = useState(false)
+    const[isUserActive, setUserActive] = useState(false);
+    const {userDetails} = useContext(UserContext);
 
 
     const displayProfileHandler = () => {
@@ -21,6 +23,7 @@ const UserSettings = (props) => {
         props.isUserActive();
     }
 
+
     return (
         <>
             <div className="user-settings__container">
@@ -30,7 +33,7 @@ const UserSettings = (props) => {
                             <img src={userImage} alt="User" />
                         </div>
                         <div className="user__profile">
-                            <h4>Juan dela Cruz</h4>
+                            <h4>{userDetails[0].name ? userDetails[0].name : userDetails[0].email}</h4>
                             <span className="user-status">{isUserActive ? 'Active' : 'Away'}</span>
                         </div>
                     </div>

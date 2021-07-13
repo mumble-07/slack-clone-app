@@ -14,7 +14,6 @@ const SidebarDM = () => {
             type: e.currentTarget.type,
         }]
         console.log(chatScreenData)
-        // console.log()
     }
 
     return (
