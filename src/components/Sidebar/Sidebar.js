@@ -57,6 +57,7 @@ const Sidebar = () => {
                 return 
             }
             rawUserList.push(data.data)
+            console.log(rawUserList)
         })
         .catch(error => console.error('Error fetching data from API'))
         }
@@ -67,6 +68,7 @@ const Sidebar = () => {
         chatScreenData["type"] = "new"
         chatScreenData["receivers"] = [];
     }
+
     return (
         <div className="wrapper">
         <div className="sidebar">
@@ -113,7 +115,11 @@ const Sidebar = () => {
                             <span className="links_name">Direct Messages</span>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <ul className="sidebarDM">
+=======
+                    <ul className="sub-menu dm-list">
+>>>>>>> main
                         {toggleDM && <SidebarDM className="sidebarDM"/>}
                     </ul>
                 </li>

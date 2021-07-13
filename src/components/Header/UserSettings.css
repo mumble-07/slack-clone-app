@@ -6,7 +6,11 @@
     top: 35px;
     border: 1px solid lightgray;
     border-radius: 8px;
+<<<<<<< HEAD
     z-index: 999;
+=======
+    z-index: 15;
+>>>>>>> main
     background-color: white;
 }
 
