@@ -1,6 +1,8 @@
 import { ContactlessOutlined } from '@material-ui/icons';
 import {useContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import UserContext from '../../api/user-context.js';
+import CustomScrollbar from '../UI/CustomScrollbar';
 
 const SidebarDM = () => {
 
@@ -18,7 +20,7 @@ const SidebarDM = () => {
     }
 
     return (
-        <>
+        <CustomScrollbar>
         {rawUserList[0].map(user => {
             const userName = user.name ? user.name : user.email
             return (
@@ -26,7 +28,7 @@ const SidebarDM = () => {
             )
         })
         }    
-        </>
+        </CustomScrollbar>
     )
 }
 

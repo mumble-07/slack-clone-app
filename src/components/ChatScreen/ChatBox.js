@@ -5,7 +5,6 @@ import axios from 'axios';
 import SendIcon from '@material-ui/icons/Send';
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 
-
 const ChatBox = () => {
   const {userDetails, userListHeaders, chatScreenData} = useContext(UserContext);
   const {type, receivers} = chatScreenData;

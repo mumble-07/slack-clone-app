@@ -4,6 +4,12 @@
   border: none;
   overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chat-screen-body::-webkit-scrollbar {
+  display: none;
 }
 
 .user-chat-body {
