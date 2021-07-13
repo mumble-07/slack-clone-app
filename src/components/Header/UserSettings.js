@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import ReactDOM from "react-dom";
 import "./UserSettings.css";
 import userImage from "../../assets/userImage.jpg";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import UserContext from "../../api/user-context";
 
 
 const UserSettings = (props) => {
 
-    const[isUserActive, setUserActive] = useState(false)
-    const history = useHistory()
+    const[isUserActive, setUserActive] = useState(false);
+    const {userDetails} = useContext(UserContext);
 
     const displayProfileHandler = () => {
         props.showProfile(true);
@@ -35,16 +36,14 @@ const UserSettings = (props) => {
                             <img src={userImage} alt="User" />
                         </div>
                         <div className="user__profile">
-                            <h4>Juan dela Cruz</h4>
-                            <div className="user-status">{isUserActive ? 'Active' : 'Away'}</div>
+                            <h4>{userDetails[0].name ? userDetails[0].name : userDetails[0].email}</h4>
+                            <span className="user-status">{isUserActive ? 'Active' : 'Away'}</span>
                         </div>
                     </div>
 
                     <div className="btn update-status"><SentimentSatisfiedOutlinedIcon />Update your status</div>
                 </div>
-
                 <div className="btn__user-settings" onClick={isUserActiveHandler}>Set yourself as <strong>{isUserActive ?'away' : 'active'}</strong></div>
-                
                 <div className="user-setting__options">
                     <div className="btn__user-settings">Edit profile</div>
                     <div className="btn__user-settings" group="5" onClick={displayProfileHandler}>View Profile</div>

@@ -37,6 +37,7 @@ const Sidebar = () => {
                 return 
             }
             channelList.push(data)
+            console.log(channelList)
         })
         .catch(error => console.error('Error fetching data from API'))
         }

@@ -5,19 +5,16 @@ import UserContext from "../../api/user-context.js";
 const SidebarDM = () => {
   const { rawUserList, chatScreenData } = useContext(UserContext);
 
-  const showChatScreen = (e) => {
-    chatScreenData.type = e.currentTarget.type;
-    chatScreenData.receivers = [
-      {
-        id: e.currentTarget.id,
-        name: e.currentTarget.getAttribute("name"),
-        type: e.currentTarget.type,
-      },
-    ];
-    console.log(chatScreenData);
-    // console.log()
-  };
-
+    const showChatScreen = (e) => {
+        chatScreenData.type = e.currentTarget.type;
+        chatScreenData.receivers = [{ 
+            id: e.currentTarget.id,
+            name: e.currentTarget.getAttribute("name"),
+            type: e.currentTarget.type,
+        }]
+        console.log(chatScreenData)
+    }
+    
   return (
     <>
       {rawUserList[0].map((user) => {

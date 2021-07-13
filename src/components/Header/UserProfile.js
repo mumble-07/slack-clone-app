@@ -1,14 +1,29 @@
+import { useContext, useState, useEffect } from 'react';
 import "./UserProfile.css";
 import CloseIcon from '@material-ui/icons/Close';
 import userImage from "../../assets/userImage.jpg";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import UserContext from '../../api/user-context';
+
 
 const UserProfile = (props) => {
-    const userName = "Juan dela Cruz";
-    const displayName = "Juan dela Cruz";
-    const userEmail = "juan@gmail.com";
 
+    const {userDetails} = useContext(UserContext);
+    const userName = userDetails[0].name? userDetails[0].name : userDetails[0].email;
+    const displayName = userDetails[0].name? userDetails[0].name : userDetails[0].email;
+    const userEmail = userDetails[0].email;
+    
+    const initialTime = new Date().toLocaleTimeString();
+    const [localTime, setLocalTime] = useState(initialTime);
+    
+    
+    useEffect(() => {
+        var timerID = setInterval(() => setLocalTime(new Date().toLocaleTimeString()), 1000 );
+        return function cleanup() {
+            clearInterval(timerID);
+        };
+    });
 
     const displayProfileHandler = () => {
         props.showProfile(false)
@@ -41,7 +56,7 @@ const UserProfile = (props) => {
                     </div>
                     <div>
                         <span>Local time</span>
-                        <h3>{displayName}</h3>
+                        <h3>{localTime}</h3>
                     </div>
                     <div>
                         <span>Email address</span>
