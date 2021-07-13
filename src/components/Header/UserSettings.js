@@ -1,17 +1,16 @@
 import { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import ReactDOM from "react-dom";
 import "./UserSettings.css";
 import userImage from "../../assets/userImage.jpg";
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import UserContext from "../../api/user-context";
 
 
-
-
 const UserSettings = (props) => {
 
     const[isUserActive, setUserActive] = useState(false);
     const {userDetails} = useContext(UserContext);
-
 
     const displayProfileHandler = () => {
         props.showProfile(true);
@@ -23,9 +22,13 @@ const UserSettings = (props) => {
         props.isUserActive();
     }
 
+    const signOutHandler = () => {
+        window.location('/Login')
+        localStorage.clear()
+    }
 
-    return (
-        <>
+    const UserSettingsDiv = () => {
+        return (
             <div className="user-settings__container">
                 <div className="user-status__summary">
                     <div className="user-info">
@@ -38,19 +41,24 @@ const UserSettings = (props) => {
                         </div>
                     </div>
 
-                    <button type="button" className="btn update-status"><SentimentSatisfiedOutlinedIcon />Update your status</button>
+                    <div className="btn update-status"><SentimentSatisfiedOutlinedIcon />Update your status</div>
                 </div>
-
-                <button className="btn__user-settings" onClick={isUserActiveHandler}>Set yourself as <strong>{isUserActive ?'away' : 'active'}</strong></button>
-                
+                <div className="btn__user-settings" onClick={isUserActiveHandler}>Set yourself as <strong>{isUserActive ?'away' : 'active'}</strong></div>
                 <div className="user-setting__options">
-                    <button className="btn__user-settings">Edit profile</button>
-                    <button className="btn__user-settings" onClick={displayProfileHandler}>View Profile</button>
+                    <div className="btn__user-settings">Edit profile</div>
+                    <div className="btn__user-settings" group="5" onClick={displayProfileHandler}>View Profile</div>
                 </div>
                 
-                <button type="button" className="btn__user-settings sign-out">Sign-out</button>
+                <div className="btn__user-settings sign-out" onClick={signOutHandler}>Sign-out</div>
             </div>
+        )
+    }
 
+    const portalElement = document.getElementById('overlays');
+
+    return (
+        <>
+            {ReactDOM.createPortal(<UserSettingsDiv/>, portalElement)}
         </>
     )
 }

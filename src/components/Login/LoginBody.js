@@ -15,7 +15,7 @@ const initialState = {
 
 const LoginBody = () => {
     const [formData,setFormData] = useState(initialState)
-    const {userDetails,setUpHeaders}  = useContext(UserContext)
+    const {userDetails,setUpHeaders, userListHeaders}  = useContext(UserContext)
     const history = useHistory();
 
 
@@ -27,6 +27,7 @@ const LoginBody = () => {
             const {"access-token":accessToken,client,expiry,uid} = res.headers;
             userDetails.push(data);
             setUpHeaders(accessToken,client,expiry,uid);
+            localStorage.setItem('user', JSON.stringify(userListHeaders));
             history.push('/MainPage');
         })
         .catch(error => console.error('Error fetching data from API'));
