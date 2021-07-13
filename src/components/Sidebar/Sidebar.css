@@ -80,6 +80,15 @@ a:visited {
 
 .sidebar .nav-links li:hover {
   background: #360d36;
+  cursor: pointer;
+}
+
+.sidebarDM li{
+  background: #3f0f40;
+}
+
+.sidebarDM li:hover{
+  background: #360d36;
 }
 
 /*ABOUT TO CHANGE*/
@@ -120,6 +129,7 @@ a:visited {
   list-style-type: none;
   /* display: none; */
 }
+
 .sidebar .nav-links li .sub-menu a:hover {
   background: #360d36;
 }

@@ -4,7 +4,6 @@ import UserContext from '../../api/user-context.js';
 const SidebarChannel = () => {
 
     const {channelList} = useContext(UserContext);
-    console.log(channelList.length)
 
         if(channelList.length == 0){
             return (<></>)

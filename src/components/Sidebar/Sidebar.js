@@ -21,9 +21,14 @@ const Sidebar = () => {
         setToggleDM(prevValue => !prevValue)
     }
 
-    const {userListHeaders,channelList, rawUserList} = useContext(UserContext);
+    const {userListHeaders,channelList, rawUserList, setUpHeaders} = useContext(UserContext);
 
     useEffect( () => {
+        const storage = localStorage.getItem('user');
+        if(storage){
+            const {"access-token": accessToken, client, expiry, uid} =  JSON.parse(storage);
+            setUpHeaders(accessToken,client,expiry,uid);
+        }
         axios.get('http://206.189.91.54//api/v1/channels', {headers: userListHeaders})
         .then(res => {
             const {data} = res;
@@ -38,9 +43,12 @@ const Sidebar = () => {
         , []
     )
 
-    console.log(rawUserList)
-
     useEffect( () => {
+        const storage = localStorage.getItem('user');
+        if(storage){
+            const {"access-token": accessToken, client, expiry, uid} =  JSON.parse(storage);
+            setUpHeaders(accessToken,client,expiry,uid);
+        }
         axios.get('http://206.189.91.54//api/v1/users', {headers: userListHeaders})
         .then(res => {
             const {data} = res;
@@ -99,11 +107,11 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <div className="icon-link">
-                    <div className="dmHandler" onClick={toggleDMHandler}>
-                        {!toggleDM && <box-icon name='chevron-right-circle' ></box-icon>}
-                        {toggleDM && <box-icon name='chevron-down-circle' ></box-icon>}
-                        <span className="links_name">Direct Messages</span>
-                    </div>
+                        <div className="dmHandler" onClick={toggleDMHandler}>
+                            {!toggleDM && <box-icon name='chevron-right-circle' ></box-icon>}
+                            {toggleDM && <box-icon name='chevron-down-circle' ></box-icon>}
+                            <span className="links_name">Direct Messages</span>
+                        </div>
                     </div>
                     <ul className="sidebarDM">
                         {toggleDM && <SidebarDM className="sidebarDM"/>}
