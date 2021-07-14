@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "./user-context.js";
 
 const UserProvider = (props) => {
@@ -10,9 +10,7 @@ const UserProvider = (props) => {
     dmList,
     chatScreenData,
     params,
-    retrieveMessageAccountOwnerReceiver,
-    retrieveMessageAccountOwnerSender,
-    currentMessage
+    currentMessage,
   } = useContext(UserContext);
 
   const setUpHeaders = (accessToken, client, expiry, uid) => {
@@ -21,19 +19,7 @@ const UserProvider = (props) => {
     userListHeaders["expiry"] = expiry;
     userListHeaders["uid"] = uid;
   };
-
-  const setUpretrieveMessageAccountOwnerReceiver = (sender_id,receiver_class,receiver_id) => {
-    retrieveMessageAccountOwnerReceiver.sender_id = sender_id;
-    retrieveMessageAccountOwnerReceiver.receiver_class = receiver_class;
-    retrieveMessageAccountOwnerReceiver.receiver_id = receiver_id;
-  }
-
-  const setUpretrieveMessageAccountOwnerSender = (sender_id,receiver_class,receiver_id) => {
-    retrieveMessageAccountOwnerSender.sender_id = sender_id;
-    retrieveMessageAccountOwnerSender.receiver_class = receiver_class;
-    retrieveMessageAccountOwnerSender.receiver_id = receiver_id;
-  }
-
+  
 
   return (
     <UserContext.Provider
@@ -42,15 +28,11 @@ const UserProvider = (props) => {
         userListHeaders,
         rawUserList,
         setUpHeaders,
-        setUpretrieveMessageAccountOwnerReceiver,
-        setUpretrieveMessageAccountOwnerSender,
         channelList,
         dmList,
         chatScreenData,
         params,
-        retrieveMessageAccountOwnerReceiver,
-        retrieveMessageAccountOwnerSender,
-        currentMessage
+        currentMessage,
       }}
     >
       {props.children}
