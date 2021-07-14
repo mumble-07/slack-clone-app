@@ -1,9 +1,20 @@
 import { ContactlessOutlined } from "@material-ui/icons";
 import { useContext } from "react";
+import axios from 'axios';
 import UserContext from "../../api/user-context.js";
 
 const SidebarDM = () => {
-  const { rawUserList, chatScreenData } = useContext(UserContext);
+  
+  const { 
+    rawUserList,
+    userDetails, 
+    userListHeaders, 
+    chatScreenData, 
+    retrieveMessageAccountOwnerReceiver, 
+    retrieveMessageAccountOwnerSender, 
+    setUpretrieveMessageAccountOwnerReceiver, 
+    setUpretrieveMessageAccountOwnerSender,
+    currentMessage } =  useContext(UserContext);
 
     const showChatScreen = (e) => {
         chatScreenData.type = e.currentTarget.type;
@@ -12,8 +23,24 @@ const SidebarDM = () => {
             name: e.currentTarget.getAttribute("name"),
             type: e.currentTarget.type,
         }]
-        console.log(chatScreenData)
-    }
+        setUpretrieveMessageAccountOwnerReceiver(Number(chatScreenData.receivers[0].id),chatScreenData.receivers[0].type,Number(userDetails[0].id));
+        setUpretrieveMessageAccountOwnerSender(Number(userDetails[0].id),chatScreenData.receivers[0].type,Number(chatScreenData.receivers[0].id));
+        //retrieve message as receiver
+        axios.get("http://206.189.91.54//api/v1/messages", {
+        headers: userListHeaders, params: retrieveMessageAccountOwnerReceiver,
+        })
+        .then((response) => response)
+        .then((result) => currentMessage.push(result))
+        .catch((error) => error)
+
+        //retrieve message as sender
+        axios.get("http://206.189.91.54//api/v1/messages", {
+        headers: userListHeaders, params: retrieveMessageAccountOwnerSender
+          })
+        .then((response) => response)
+        .then((result) => currentMessage.push(result))
+        .catch((error) => error)
+        }
     
   return (
     <>
@@ -27,9 +54,7 @@ const SidebarDM = () => {
             type="User"
             onClick={showChatScreen}
           >
-            <a href="/#">
               <box-icon name="user-circle"></box-icon> {user.email}{" "}
-            </a>
           </li>
         );
       })}

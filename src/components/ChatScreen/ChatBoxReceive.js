@@ -6,17 +6,13 @@ const ChatBoxReceive = () => {
   const { userDetails, userListHeaders, chatScreenData } =
     useContext(UserContext);
 
-  // RETRIVE MESSAGES
+  // RETRIEVE MESSAGES
 
   const receiveMessage = () => {
     axios
       .get("http://206.189.91.54//api/v1/messages", {
         headers: userListHeaders,
         params: {
-          // sender_id: 86,
-          // receiver_class: "User",
-          // receiver_id: 139,
-
           sender_id: userDetails[0].id || "",
           receiver_class: chatScreenData.receivers[0].type || "",
           receiver_id: chatScreenData.receivers[0].id || "",
