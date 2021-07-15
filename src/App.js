@@ -1,23 +1,39 @@
 import './App.css';
+import {useState, useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import UserProvider from './api/user-provider.js';
-import Login from './components/Login/Login';
+import UserContext from './api/user-context.js';
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import MainPage from './components/MainPage/MainPage';
-// import UsersList from './components/AddUsers/UsersList';
+
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const data = localStorage.getItem('user');
+    if (data){
+      setIsLoggedIn(true);
+      }
+  }, [])
+
+  const test = () => {
+    console.log('test');
+  }
   return (
     <>
       <UserProvider>
         <Router>
           <Switch>
-            <Route path='/' exact component={Login}/>
-            <Route path='/Signup' component={Signup}/>
+            {!isLoggedIn && <Route path='/' exact component={Login}/>}
+            {isLoggedIn && <Route path='/' exact component={MainPage}/>}
+            <Route path='/Login' exact component={Login}/>
             <Route path='/MainPage' component={MainPage}/>
+            <Route path='/Signup' component={Signup}/>
           </Switch>
         </Router>
-        {/* <UsersList/> */}
       </UserProvider>
     </>
   );
