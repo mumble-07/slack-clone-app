@@ -11,6 +11,7 @@ const UserProvider = (props) => {
     chatScreenData,
     params,
     currentMessage,
+    modalsDisplay,
   } = useContext(UserContext);
 
   const setUpHeaders = (accessToken, client, expiry, uid) => {
@@ -19,7 +20,7 @@ const UserProvider = (props) => {
     userListHeaders["expiry"] = expiry;
     userListHeaders["uid"] = uid;
   };
-  
+ 
 
   return (
     <UserContext.Provider
@@ -33,6 +34,7 @@ const UserProvider = (props) => {
         chatScreenData,
         params,
         currentMessage,
+        modalsDisplay,
       }}
     >
       {props.children}

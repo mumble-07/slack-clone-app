@@ -9,10 +9,6 @@ const SidebarDM = () => {
     userDetails,
     userListHeaders,
     chatScreenData,
-    retrieveMessageAccountOwnerReceiver,
-    retrieveMessageAccountOwnerSender,
-    setUpretrieveMessageAccountOwnerReceiver,
-    setUpretrieveMessageAccountOwnerSender,
     currentMessage,
   } = useContext(UserContext);
 
@@ -25,35 +21,6 @@ const SidebarDM = () => {
         type: e.currentTarget.type,
       },
     ];
-    setUpretrieveMessageAccountOwnerReceiver(
-      Number(chatScreenData.receivers[0].id),
-      chatScreenData.receivers[0].type,
-      Number(userDetails[0].id)
-    );
-    setUpretrieveMessageAccountOwnerSender(
-      Number(userDetails[0].id),
-      chatScreenData.receivers[0].type,
-      Number(chatScreenData.receivers[0].id)
-    );
-    //retrieve message as receiver
-    axios
-      .get("http://206.189.91.54//api/v1/messages", {
-        headers: userListHeaders,
-        params: retrieveMessageAccountOwnerReceiver,
-      })
-      .then((response) => response)
-      .then((result) => currentMessage.push(result))
-      .catch((error) => error);
-
-    //retrieve message as sender
-    axios
-      .get("http://206.189.91.54//api/v1/messages", {
-        headers: userListHeaders,
-        params: retrieveMessageAccountOwnerSender,
-      })
-      .then((response) => response)
-      .then((result) => currentMessage.push(result))
-      .catch((error) => error);
   };
 
   //Searh Bar

@@ -6,9 +6,10 @@ import "boxicons";
 
 import SidebarChannel from "./SidebarChannel";
 import SidebarDM from "./SidebarDM";
+import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
-  const { chatScreenData } = useContext(UserContext); //modify current receiver when EDIT button is clicked
+  const { chatScreenData, modalsDisplay } = useContext(UserContext); //modify current receiver when EDIT button is clicked
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
 
@@ -35,15 +36,11 @@ const Sidebar = () => {
       setUpHeaders(accessToken, client, expiry, uid);
     }
     axios
-      .get("http://206.189.91.54//api/v1/channels", {
+      .get("http://206.189.91.54//api/v1/channel/owned", {
         headers: userListHeaders,
       })
       .then((res) => {
         const { data } = res;
-        if ((data.errors = "No available channels")) {
-          console.log(data.errors);
-          return;
-        }
         channelList.push(data);
         console.log(channelList);
       })
@@ -79,6 +76,10 @@ const Sidebar = () => {
     chatScreenData["type"] = "new";
     chatScreenData["receivers"] = [];
   };
+
+  const openChannelModal = () => {
+    modalsDisplay.channelModal = true;
+  }
 
   return (
     <div className="wrapper">
@@ -121,8 +122,9 @@ const Sidebar = () => {
                 <box-icon name="lock-alt"></box-icon>batch 9
               </li>
               {toggleChannel && <SidebarChannel />}
-              <li>
-                <box-icon name="lock-alt"></box-icon>Add channels
+              <li onClick={openChannelModal}>
+                <box-icon name="lock-alt"/>Add channels
+                {modalsDisplay.channelModal && <AddChannel/>}
               </li>
             </ul>
           </li>
