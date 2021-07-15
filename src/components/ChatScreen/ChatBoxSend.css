@@ -8,7 +8,7 @@
   margin-right: 2%;
   border: 1.5px solid grey;
   border-radius: 10px;
-  overflow: visible;
+  overflow: hidden;
   position: fixed;
   bottom: 0;
   background-color: white;
@@ -69,4 +69,5 @@
 
 .input-message:empty:focus::before {
   content: "";
+  padding: 20px;
 }

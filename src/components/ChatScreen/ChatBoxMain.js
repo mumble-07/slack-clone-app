@@ -1,5 +1,5 @@
 import ChatBoxSend from "./ChatBoxSend";
-import ChatBoxRetrieve from "./ChatBoxRetrieve";
+// import ChatBoxRetrieve from "./ChatsRetrieved";
 // import ChatBoxReceive from "./ChatBoxReceive";
 // import { defaultMaxListeners } from "events";
 
@@ -8,7 +8,7 @@ const ChatBoxMain = () => {
     <div>
       {/* <ChatBoxReceive /> */}
       <ChatBoxSend />
-      <ChatBoxRetrieve/>
+      {/* <ChatBoxRetrieve/> */}
     </div>
   );
 };

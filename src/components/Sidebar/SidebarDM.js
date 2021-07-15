@@ -1,4 +1,3 @@
-import { ContactlessOutlined } from "@material-ui/icons";
 import { useContext } from "react";
 import axios from "axios";
 import UserContext from "../../api/user-context.js";

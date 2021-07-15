@@ -20,16 +20,16 @@ const UserContext = createContext({
     recever_class: "",
     receiver_id: "",
   },
-  retrieveMessageAccountOwnerReceiver:{
-    sender_id: "",
-    receiver_class: "",
-    receiver_id: "",
-  },
-  retrieveMessageAccountOwnerSender:{
-    sender_id: "",
-    receiver_class: "",
-    receiver_id: "",
-  },
+  // retrieveMessageAccountOwnerReceiver:{
+  //   sender_id: "",
+  //   receiver_class: "",
+  //   receiver_id: "",
+  // },
+  // retrieveMessageAccountOwnerSender:{
+  //   sender_id: "",
+  //   receiver_class: "",
+  //   receiver_id: "",
+  // },
   currentMessage: [],
 });
 
