@@ -9,7 +9,7 @@ import SidebarDM from "./SidebarDM";
 import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
-  const { chatScreenData, modalsDisplay } = useContext(UserContext); //modify current receiver when EDIT button is clicked
+  const { chatScreenData, modalsDisplay, userDetails, allMessages } = useContext(UserContext); //modify current receiver when EDIT button is clicked
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
 
@@ -21,9 +21,31 @@ const Sidebar = () => {
     setToggleDM((prevValue) => !prevValue);
   };
 
-  const { userListHeaders, channelList, rawUserList, setUpHeaders } =
-    useContext(UserContext);
+  const { userListHeaders, channelList, rawUserList, setUpHeaders } = useContext(UserContext);
 
+   
+  const retrieveAllMessages = () => {
+    for (const list of rawUserList[0]) {
+      axios.get("http://206.189.91.54//api/v1/messages", {
+      headers: userListHeaders, 
+      params:  {
+      "sender_id": userDetails[0].id.toString(),
+      "receiver_class": "User",
+      "receiver_id": list.id.toString(),
+      },})
+      .then((response) => response.data.data)
+      .then((result) => {
+        // console.log(result);
+      if(result.length > 0) {
+        allMessages.push(result)
+      }
+      console.log(allMessages)
+      })
+      .catch((error) => error)
+    }
+  }
+
+    
   useEffect(() => {
     const storage = localStorage.getItem("user");
     if (storage) {
@@ -68,9 +90,12 @@ const Sidebar = () => {
         }
         rawUserList.push(data.data);
         console.log(rawUserList);
+        retrieveAllMessages(); //retrieve all DM
       })
       .catch((error) => console.error("Error fetching data from API"));
   }, []);
+
+
 
   const setChatScreenData = () => {
     chatScreenData["type"] = "new";
