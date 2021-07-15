@@ -17,7 +17,7 @@ const ChatsRetrieved = () => {
             headers: userListHeaders, 
             params:  {
             "sender_id": userDetails[0].id.toString(),
-            "receiver_class": "User",
+            "receiver_class": chatScreenData.receivers[0].type,
             "receiver_id": chatScreenData.receivers[0].id,
             },})
             .then((response) => response.data.data)
