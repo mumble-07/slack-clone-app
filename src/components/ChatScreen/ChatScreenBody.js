@@ -2,9 +2,9 @@ import "./ChatScreenBody.css";
 import user1 from "../../assets/user1.png";
 import user2 from "../../assets/user2.png";
 import CustomScrollbar from "../UI/CustomScrollbar";
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-import MessageContainer from '../UI/MessageContainer';
+import MessageContainer from "../UI/MessageContainer";
 
 const ChatScreenBody = () => {
   return (
@@ -20,9 +20,12 @@ const ChatScreenBody = () => {
             <h1>User Name</h1>
           </div> */}
           <Router>
-              <Switch>
-                  <Route path="/MainPage/MessageContainer" component={MessageContainer} />
-              </Switch>
+            <Switch>
+              <Route
+                path="/MainPage/MessageContainer"
+                component={MessageContainer}
+              />
+            </Switch>
           </Router>
         </div>
       </div>
