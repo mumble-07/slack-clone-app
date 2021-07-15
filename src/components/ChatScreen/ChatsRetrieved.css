@@ -43,3 +43,8 @@
 .chat-time {
     font-size: 12px;
 }
+
+
+.no-message__alert {
+    text-align: center;
+}
