@@ -1,10 +1,11 @@
 import {useContext} from 'react';
 import UserContext from '../../api/user-context.js';
+import {v4} from 'uuid';
 
 const SidebarChannel = () => {
 
     const {channelList, chatScreenData} = useContext(UserContext);
-    console.log(channelList.length)
+    console.log(channelList)
 
         if(channelList.length == 0){
             return (<></>)
@@ -17,14 +18,13 @@ const SidebarChannel = () => {
                 name: e.currentTarget.getAttribute("name"),
                 type: e.currentTarget.type,
             }]
-            console.log(chatScreenData)
         }
         
         return(
             <>    
-            {channelList.map(channel => {
+            {channelList[0].data.map(channel => {
                 return (
-                    <li key={channel.id} id={channel.id} name={channel.name} type="Channel" onClick={showChatScreen}><box-icon name='lock-alt' ></box-icon> channel</li>
+                    <li key={v4()} id={channel.id} name={channel.name} type="Channel" onClick={showChatScreen}><box-icon name='lock-alt' ></box-icon> {channel.name}</li>
                     )
                 })}
             </>

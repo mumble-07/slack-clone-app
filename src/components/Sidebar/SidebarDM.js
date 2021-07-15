@@ -1,46 +1,66 @@
 import { useContext } from "react";
-import axios from 'axios';
+import axios from "axios";
 import UserContext from "../../api/user-context.js";
+import { useState } from "react";
 
 const SidebarDM = () => {
-  
-  const { 
+  const {
     rawUserList,
-    chatScreenData, 
-  } =  useContext(UserContext);
-
+    userDetails,
+    userListHeaders,
+    chatScreenData,
+    currentMessage,
+  } = useContext(UserContext);
 
   const showChatScreen = (e) => {
     chatScreenData.type = e.currentTarget.type;
-    chatScreenData.receivers = [{ 
-      id: e.currentTarget.id,
-      name: e.currentTarget.getAttribute("name"),
-      type: e.currentTarget.type,
-    }]
+    chatScreenData.receivers = [
+      {
+        id: e.currentTarget.id,
+        name: e.currentTarget.getAttribute("name"),
+        type: e.currentTarget.type,
+      },
+    ];
+  };
 
-    // console.log(typeof chatScreenData.receivers[0].id)
-    // console.log(typeof userDetails[0].id)
-    // console.log(chatScreenData.receivers[0].id)
-  }
+  //Searh Bar
 
+  const [searchUser, setSearchUser] = useState("");
 
-  
   return (
     <>
-      {rawUserList[0].map((user) => {
-        const userName = user.name ? user.name : user.email;
-        return (
-          <li
-            key={user.id}
-            id={user.id}
-            name={userName}
-            type="User"
-            onClick={showChatScreen}
-          >
+      <input
+        style={{ width: "100%" }}
+        type="text"
+        placeholder="search user"
+        onChange={(event) => {
+          setSearchUser(event.target.value);
+        }}
+      />
+      {rawUserList[0]
+        .filter((value) => {
+          if (searchUser === "") {
+            return value;
+          } else if (
+            value.uid.toLowerCase().includes(searchUser.toLowerCase())
+          ) {
+            return value;
+          }
+        })
+        .map((user) => {
+          const userName = user.name ? user.name : user.email;
+          return (
+            <li
+              key={user.id}
+              id={user.id}
+              name={userName}
+              type="User"
+              onClick={showChatScreen}
+            >
               <box-icon name="user-circle"></box-icon> {user.email}{" "}
-          </li>
-        );
-      })}
+            </li>
+          );
+        })}
     </>
   );
 };

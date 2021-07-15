@@ -11,8 +11,6 @@ const ChatsRetrieved = () => {
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-
-    //retrieve messages API call
     const retrieveMessage = () => {
         if(chatScreenData.receivers.length !== 0) {
             axios.get("http://206.189.91.54//api/v1/messages", {
@@ -43,7 +41,7 @@ const ChatsRetrieved = () => {
 
     //set time on component mount and clear on umnount
     useEffect(() => {
-        setInterval(retrieveMessage, 1000)
+        setInterval(retrieveMessage, 130000)
         return function cleanup() {
             clearInterval(retrieveMessage);
         }
