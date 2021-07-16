@@ -23,7 +23,6 @@ const ChatsRetrieved = () => {
             .then((response) => response.data.data)
             .then((result) => {
             currentMessage[0]= result;
-            console.log(currentMessage[0]);
             setMessages(currentMessage[0]);
             setIsLoading(false);
             })

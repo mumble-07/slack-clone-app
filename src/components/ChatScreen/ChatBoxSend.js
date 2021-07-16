@@ -20,8 +20,6 @@ const ChatBoxSend = () => {
 
   const sendMessageHandler = (e) => {
     e.preventDefault();
-    console.log(userDetails);
-    console.log(receivers);
 
     receivers.forEach((receiver) => {
       const sendMessageConfig = {

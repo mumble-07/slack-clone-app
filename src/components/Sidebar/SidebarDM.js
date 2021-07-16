@@ -2,6 +2,7 @@ import { useContext } from "react";
 import axios from "axios";
 import UserContext from "../../api/user-context.js";
 import { useState } from "react";
+import {v4} from 'uuid';
 
 const SidebarDM = () => {
   const {
@@ -84,7 +85,7 @@ const SidebarDM = () => {
 
           return (
             <li
-            key={receiver.id}
+            key={v4()}
             id={receiver.id}
             name={receiverName}
             type="User"

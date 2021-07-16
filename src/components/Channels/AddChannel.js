@@ -12,7 +12,7 @@ const initialState = {
     "user-ids": [],
 }
 
-const AddChannel = () => {
+const AddChannel = (props) => {
     const [formData,setFormData] = useState(initialState)
     const {rawUserList, userListHeaders,closeModals, channelDetails} = useContext(UserContext);
     
@@ -28,14 +28,10 @@ const AddChannel = () => {
         .catch(error => console.error(error.response.data))
     }
 
-    const closeModalHandler = () => {
-        closeModals()
-    }
-
     return (
-        <Modal>
+        <Modal onClose={props.onClose}>
                 <div className={classes.container}>
-                    <Button type="button" className={classes.close} size="large" onClick={closeModalHandler}>×</Button>
+                    <Button type="button" className={classes.close} size="large" onClick={props.onClose}>×</Button>
                     <div className={classes.heading}><h2>Create Channel</h2></div>
                     <div className={classes.subHeading}>Channels are where your team communicates. 
                         They're best when organized around a topic - #programming for example.

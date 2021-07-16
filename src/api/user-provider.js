@@ -11,18 +11,18 @@ const UserProvider = (props) => {
     chatScreenData,
     params,
     currentMessage,
-    modalsDisplay,
     allMessages,
+    additionalMembers,
   } = useContext(UserContext);
 
-  const [modalsDisplay, setModalDisplay] =useState(false)
+  const [modalsDisplay, setModalsDisplay] = useState(false)
 
   const closeModals = () => {
-    setModalDisplay(false)
+    setModalsDisplay(false)
   }
 
   const openModals = () => {
-    setModalDisplay(true)
+    setModalsDisplay(true)
   }
 
   const setUpHeaders = (accessToken, client, expiry, uid) => {
@@ -48,7 +48,8 @@ const UserProvider = (props) => {
         closeModals,
         openModals,
         modalsDisplay,
-        allMessages
+        allMessages,
+        additionalMembers
       }}
     >
       {props.children}

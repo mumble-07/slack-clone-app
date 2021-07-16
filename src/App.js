@@ -1,15 +1,13 @@
 import './App.css';
 import {useState, useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import UserContext from './api/user-context.js';
 import UserProvider from './api/user-provider.js';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import MainPage from './components/MainPage/MainPage';
-import AddChannel from './components/Channels/AddChannel';
+
 
 function App() {
-  const {modalsDisplay} = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

@@ -9,9 +9,18 @@ import SidebarDM from "./SidebarDM";
 import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
-  const { chatScreenData, modalsDisplay, userDetails, allMessages } = useContext(UserContext); //modify current receiver when EDIT button is clicked
+  const { chatScreenData, 
+    modalsDisplay, 
+    userDetails, 
+    allMessages, 
+    userListHeaders, 
+    channelList, 
+    rawUserList, 
+    setUpHeaders} = useContext(UserContext); //modify current receiver when EDIT button is clicked
+
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
+  const [openChannel, setOpenChannel] = useState(false)
 
   const toggleChannelHandler = () => {
     setToggleChannel((prevValue) => !prevValue);
@@ -21,8 +30,13 @@ const Sidebar = () => {
     setToggleDM((prevValue) => !prevValue);
   };
 
-  const { userListHeaders, channelList, rawUserList, setUpHeaders } = useContext(UserContext);
+  const openChannelHander = () => {
+    setOpenChannel(true)
+  }
 
+  const closeChannelHandler = () => {
+    setOpenChannel(false)
+  }
    
   const retrieveAllMessages = () => {
     for (const list of rawUserList[0]) {
@@ -35,7 +49,6 @@ const Sidebar = () => {
       },})
       .then((response) => response.data.data)
       .then((result) => {
-        // console.log(result);
       if(result.length > 0) {
         allMessages.push(result)
       }
@@ -143,11 +156,10 @@ const Sidebar = () => {
                 <box-icon name="lock-alt"></box-icon>batch 9
               </li>
               {toggleChannel && <SidebarChannel />}
-              <li onClick={openModals}>
+              <li onClick={openChannelHander}>
                 <box-icon name="lock-alt"/>Add channels
-                {modalsDisplay && <AddChannel/>}
+                {openChannel && <AddChannel onClose={closeChannelHandler}/>}
               </li>
-              <button onClick={closeModals}>Close</button>
             </ul>
           </li>
           <li>
