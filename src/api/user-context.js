@@ -23,7 +23,8 @@ const UserContext = createContext({
   currentMessage: [],
   modalsDisplay: {
     channelModal: false,
-  }
+  },
+  allMessages: [],
 });
 
 export default UserContext;

@@ -12,6 +12,7 @@ const UserProvider = (props) => {
     params,
     currentMessage,
     modalsDisplay,
+    allMessages,
   } = useContext(UserContext);
 
   const setUpHeaders = (accessToken, client, expiry, uid) => {
@@ -35,6 +36,7 @@ const UserProvider = (props) => {
         params,
         currentMessage,
         modalsDisplay,
+        allMessages
       }}
     >
       {props.children}
