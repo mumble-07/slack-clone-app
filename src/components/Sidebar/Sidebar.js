@@ -9,7 +9,7 @@ import SidebarDM from "./SidebarDM";
 import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
-  const { chatScreenData, modalsDisplay } = useContext(UserContext); //modify current receiver when EDIT button is clicked
+  const { chatScreenData, openModals, closeModals, modalsDisplay } = useContext(UserContext); //modify current receiver when EDIT button is clicked
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
 
@@ -77,10 +77,6 @@ const Sidebar = () => {
     chatScreenData["receivers"] = [];
   };
 
-  const openChannelModal = () => {
-    modalsDisplay.channelModal = true;
-  }
-
   return (
     <div className="wrapper">
       <div className="sidebar">
@@ -122,10 +118,11 @@ const Sidebar = () => {
                 <box-icon name="lock-alt"></box-icon>batch 9
               </li>
               {toggleChannel && <SidebarChannel />}
-              <li onClick={openChannelModal}>
+              <li onClick={openModals}>
                 <box-icon name="lock-alt"/>Add channels
-                {modalsDisplay.channelModal && <AddChannel/>}
+                {modalsDisplay && <AddChannel/>}
               </li>
+              <button onClick={closeModals}>Close</button>
             </ul>
           </li>
           <li>

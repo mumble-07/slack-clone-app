@@ -11,14 +11,6 @@ const ChatScreenBody = () => {
       <div className="chat-screen-body">
         <div className="user-chat-body">
           <ChatsRetrieved />
-          <Router>
-            <Switch>
-              <Route
-                path="/MainPage/MessageContainer"
-                component={MessageContainer}
-              />
-            </Switch>
-          </Router>
         </div>
       </div>
     </CustomScrollbar>

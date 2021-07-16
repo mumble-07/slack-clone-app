@@ -12,33 +12,30 @@ const initialState = {
     "user-ids": [],
 }
 
-const AddChannel = (props) => {
+const AddChannel = () => {
     const [formData,setFormData] = useState(initialState)
-    const {rawUserList, userListHeaders,modalsDisplay, chatScreenData} = useContext(UserContext);
-    const [memberList, setMemberList] = useState([]);
-    const [remainingUsers, setRemainingUsers] = useState(rawUserList);
+    const {rawUserList, userListHeaders,closeModals, channelDetails} = useContext(UserContext);
     
     const addMembersHandler = (e) => {
         formData["user-ids"].push(Number(e.target.id))
     }
 
-
     const addChannelHander = (e) => {
         axios.post('http://206.189.91.54//api/v1/channels', formData,{headers: userListHeaders})
-        .then(res => console.log())
+        .then(res => {
+            channelDetails.push(res)
+        })
         .catch(error => console.error(error.response.data))
-
-        modalsDisplay.channelModal = false;
     }
 
-    const closeChannelHandler = () =>{
-        modalsDisplay.channelModal = false
+    const closeModalHandler = () => {
+        closeModals()
     }
 
     return (
-            <Modal onClose={props.onClose}>
+        <Modal>
                 <div className={classes.container}>
-                    <Button type="button" className={classes.close} size="large" onClick={closeChannelHandler}>×</Button>
+                    <Button type="button" className={classes.close} size="large" onClick={closeModalHandler}>×</Button>
                     <div className={classes.heading}><h2>Create Channel</h2></div>
                     <div className={classes.subHeading}>Channels are where your team communicates. 
                         They're best when organized around a topic - #programming for example.
@@ -77,7 +74,7 @@ const AddChannel = (props) => {
                         <button className={classes.createButton} type="submit" onClick={addChannelHander}>Create</button>
                     </div>
                 </div>
-            </Modal>
+        </Modal>
     )
 }
 

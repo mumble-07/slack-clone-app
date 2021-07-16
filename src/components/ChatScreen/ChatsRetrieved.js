@@ -31,7 +31,6 @@ const ChatsRetrieved = () => {
         } else return;
     }
 
-
     //call retrive message only when receivers change
     useEffect(() => {
         setIsLoading(true)
