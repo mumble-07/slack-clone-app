@@ -28,10 +28,15 @@ const AddChannel = (props) => {
         .catch(error => console.error(error.response.data))
     }
 
+    const closeModalHandler = () => {    
+        props.onClose()
+    }
+
     return (
+        <>
         <Modal onClose={props.onClose}>
                 <div className={classes.container}>
-                    <Button type="button" className={classes.close} size="large" onClick={props.onClose}>×</Button>
+                    <Button type="button" className={classes.close} size="large" onClick={closeModalHandler}>×</Button>
                     <div className={classes.heading}><h2>Create Channel</h2></div>
                     <div className={classes.subHeading}>Channels are where your team communicates. 
                         They're best when organized around a topic - #programming for example.
@@ -71,6 +76,7 @@ const AddChannel = (props) => {
                     </div>
                 </div>
         </Modal>
+        </>
     )
 }
 

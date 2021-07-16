@@ -34,7 +34,7 @@ const LoginBody = () => {
         userDetails.push(data);
         setUpHeaders(accessToken, client, expiry, uid);
         localStorage.setItem("user", JSON.stringify(userListHeaders));
-        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+        localStorage.setItem("userDetails", JSON.stringify(...userDetails));
         history.push("/MainPage");
       })
       .catch((error) => console.error("Error fetching data from API"));

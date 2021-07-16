@@ -27,7 +27,7 @@ const Header = () => {
                     </div>
                     <HelpOutlineIcon />
                 </div>
-                <UserInfo />
+                <UserInfo/>
             </div>
         </div>
     )

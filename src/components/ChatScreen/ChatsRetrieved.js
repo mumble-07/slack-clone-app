@@ -16,11 +16,20 @@ const ChatsRetrieved = () => {
         retrieveMessage();
     }, [chatScreenData.receivers])
 
+    useEffect(() => {
+      setInterval(retrieveMessage, 1000)
+      return function cleanup() {
+          clearInterval(retrieveMessage);
+      }
+  }, [])
+
   const retrieveMessage = () => {
     const storage = JSON.parse(localStorage.getItem("params"));
     const storage2 = JSON.parse(localStorage.getItem("userDetails"));
     localStorage.setItem("params", JSON.stringify(chatScreenData));
-    if (storage && storage2) {
+    console.log(storage)
+    
+    if (storage && storage2 && storage.type!=="new") {
       axios
         .get("http://206.189.91.54//api/v1/messages", {
           headers: userListHeaders,
@@ -33,12 +42,11 @@ const ChatsRetrieved = () => {
         .then((response) => response.data.data)
         .then((result) => {
           currentMessage[0] = result;
-          console.log(currentMessage[0]);
           setMessages(currentMessage[0]);
           setIsLoading(false);
         })
         .catch((error) => error);
-    } else if (chatScreenData.receivers.length !== 0) {
+    }else if (chatScreenData.receivers.length !== 0) {
       axios
         .get("http://206.189.91.54//api/v1/messages", {
           headers: userListHeaders,
@@ -51,7 +59,6 @@ const ChatsRetrieved = () => {
         .then((response) => response.data.data)
         .then((result) => {
           currentMessage[0] = result;
-          console.log(currentMessage[0]);
           setMessages(currentMessage[0]);
           setIsLoading(false);
         })
@@ -59,9 +66,6 @@ const ChatsRetrieved = () => {
     } else return;
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("userDetails", JSON.stringify(userDetails));
-  // });
 
   //call retrive message only when receivers change
   useEffect(() => {
@@ -105,37 +109,6 @@ const ChatsRetrieved = () => {
             }
         </div>
     )
-
-  return (
-    <div>
-      {isLoading && <div>Loading messages...</div>}
-      {!isLoading && (
-        <ul className="chat-container">
-          {messages?.map((message) => {
-            const messageContent = message.body;
-            const name = message.sender.name
-              ? message.sender.name
-              : message.sender.email;
-            const time = new Date(message.created_at).toLocaleTimeString();
-            return (
-              <li key={message.id} className="chat-item-container">
-                <div className="chat__user-image">
-                  <img src={user1} alt="sender image" />
-                </div>
-                <div className="chat-item">
-                  <div className="chat-item__header">
-                    <h5>{name}</h5>
-                    <span className="chat-time">{time}</span>
-                  </div>
-                  <div className="chat__content">{parse(messageContent)}</div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
-  );
 };
 
 export default ChatsRetrieved;

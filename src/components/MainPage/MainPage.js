@@ -19,7 +19,7 @@ const Mainpage = () => {
     <Link to="/MainPage" style={{ textDecoration: "none", cursor: "default" }}>
       <div className="main-page">
         <div className="main-page-header">
-          <Header />
+          <Header/>
         </div>
         <div className="main-page-sidebar">
           <Sidebar />

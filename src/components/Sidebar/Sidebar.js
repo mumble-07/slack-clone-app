@@ -10,13 +10,12 @@ import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
   const { chatScreenData, 
-    modalsDisplay, 
     userDetails, 
     allMessages, 
     userListHeaders, 
     channelList, 
     rawUserList, 
-    setUpHeaders} = useContext(UserContext); //modify current receiver when EDIT button is clicked
+    setUpHeaders} = useContext(UserContext); 
 
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
@@ -37,7 +36,45 @@ const Sidebar = () => {
   const closeChannelHandler = () => {
     setOpenChannel(false)
   }
+
+  const storage = localStorage.getItem("user");
+  if (storage) {
+    const {
+      "access-token": accessToken,
+      client,
+      expiry,
+      uid,
+    } = JSON.parse(storage);
+    setUpHeaders(accessToken, client, expiry, uid);
+  }
    
+  useEffect(() => {
+    axios
+      .get("http://206.189.91.54//api/v1/channels", {
+        headers: userListHeaders,
+      })
+      .then((res) => {
+        const { data } = res;
+        channelList.push(data);
+      })
+      .catch((error) => console.error("Error fetching data from API"));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://206.189.91.54//api/v1/users", { headers: userListHeaders })
+      .then((res) => {
+        const { data } = res;
+        if (data.length == 0) {
+          console.log("No available users");
+          return;
+        }
+        rawUserList.push(data.data);
+        retrieveAllMessages(); //retrieve all DM
+      })
+      .catch((error) => console.error("Error fetching data from API"));
+  }, []);
+
   const retrieveAllMessages = () => {
     for (const list of rawUserList[0]) {
       axios.get("http://206.189.91.54//api/v1/messages", {
@@ -52,63 +89,10 @@ const Sidebar = () => {
       if(result.length > 0) {
         allMessages.push(result)
       }
-      console.log(allMessages)
       })
       .catch((error) => error)
     }
   }
-
-    
-  useEffect(() => {
-    const storage = localStorage.getItem("user");
-    if (storage) {
-      const {
-        "access-token": accessToken,
-        client,
-        expiry,
-        uid,
-      } = JSON.parse(storage);
-      setUpHeaders(accessToken, client, expiry, uid);
-    }
-    axios
-      .get("http://206.189.91.54//api/v1/channel/owned", {
-        headers: userListHeaders,
-      })
-      .then((res) => {
-        const { data } = res;
-        channelList.push(data);
-        console.log(channelList);
-      })
-      .catch((error) => console.error("Error fetching data from API"));
-  }, []);
-
-  useEffect(() => {
-    const storage = localStorage.getItem("user");
-    if (storage) {
-      const {
-        "access-token": accessToken,
-        client,
-        expiry,
-        uid,
-      } = JSON.parse(storage);
-      setUpHeaders(accessToken, client, expiry, uid);
-    }
-    axios
-      .get("http://206.189.91.54//api/v1/users", { headers: userListHeaders })
-      .then((res) => {
-        const { data } = res;
-        if (data.length == 0) {
-          console.log("No available users");
-          return;
-        }
-        rawUserList.push(data.data);
-        console.log(rawUserList);
-        retrieveAllMessages(); //retrieve all DM
-      })
-      .catch((error) => console.error("Error fetching data from API"));
-  }, []);
-
-
 
   const setChatScreenData = () => {
     chatScreenData["type"] = "new";
@@ -152,14 +136,10 @@ const Sidebar = () => {
               </div>
             </div>
             <ul className="sub-menu">
-              <li>
-                <box-icon name="lock-alt"></box-icon>batch 9
+              <li onClick={openChannelHander}>
+                  <box-icon name="lock-alt"/>Add channels
               </li>
               {toggleChannel && <SidebarChannel />}
-              <li onClick={openChannelHander}>
-                <box-icon name="lock-alt"/>Add channels
-                {openChannel && <AddChannel onClose={closeChannelHandler}/>}
-              </li>
             </ul>
           </li>
           <li>
@@ -175,6 +155,7 @@ const Sidebar = () => {
             </ul>
           </li>
         </ul>
+        {openChannel && <AddChannel onClose={closeChannelHandler}/>}
       </div>
     </div>
   );
