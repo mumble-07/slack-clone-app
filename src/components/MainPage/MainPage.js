@@ -7,13 +7,13 @@ import { useContext } from "react";
 import UserContext from "../../api/user-context";
 
 const Mainpage = () => {
-  // const { userDetails, userListHeaders, chatScreenData } =
-  //   useContext(UserContext);
+    const { userDetails, userListHeaders, chatScreenData } =
+      useContext(UserContext);
 
-  // const data = JSON.parse(localStorage.getItem("userDetails"));
-  // if (data) {
-  //   userDetails.push(data);
-  // }
+    const data = JSON.parse(localStorage.getItem("userDetails"));
+    if (data) {
+      userDetails.push(data);
+    }
 
   return (
     <Link to="/MainPage" style={{ textDecoration: "none", cursor: "default" }}>

@@ -6,41 +6,15 @@ import axios from "axios";
 import parse from "html-react-parser";
 
 const ChatsRetrieved = () => {
-<<<<<<< HEAD
-  const { currentMessage, userDetails, chatScreenData, userListHeaders } =
-    useContext(UserContext);
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-=======
     const { currentMessage, userDetails, chatScreenData, userListHeaders } =  useContext(UserContext);
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-
-    const retrieveMessage = () => {
-        if(chatScreenData.receivers.length !== 0) {
-            axios.get("http://206.189.91.54//api/v1/messages", {
-            headers: userListHeaders, 
-            params:  {
-            "sender_id": userDetails[0].id.toString(),
-            "receiver_class": chatScreenData.receivers[0].type,
-            "receiver_id": chatScreenData.receivers[0].id,
-            },})
-            .then((response) => response.data.data)
-            .then((result) => {
-            currentMessage[0]= result;
-            setMessages(currentMessage[0]);
-            setIsLoading(false);
-            })
-            .catch((error) => error)
-        } else return;
-    }
 
     //call retrive message only when receivers change
     useEffect(() => {
         setIsLoading(true)
         retrieveMessage();
     }, [chatScreenData.receivers])
->>>>>>> c2a7811c6655514d788a0eb048eae485a667d718
 
   const retrieveMessage = () => {
     const storage = JSON.parse(localStorage.getItem("params"));
@@ -95,15 +69,6 @@ const ChatsRetrieved = () => {
     retrieveMessage();
   }, [chatScreenData.receivers]);
 
-<<<<<<< HEAD
-  //set time on component mount and clear on umnount
-  useEffect(() => {
-    setInterval(retrieveMessage, 130000);
-    return function cleanup() {
-      clearInterval(retrieveMessage);
-    };
-  }, []);
-=======
 
     return(
         <div>
@@ -140,7 +105,6 @@ const ChatsRetrieved = () => {
             }
         </div>
     )
->>>>>>> c2a7811c6655514d788a0eb048eae485a667d718
 
   return (
     <div>
