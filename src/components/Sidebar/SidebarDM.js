@@ -10,6 +10,7 @@ const SidebarDM = () => {
     userListHeaders,
     chatScreenData,
     currentMessage,
+    allMessages,
   } = useContext(UserContext);
 
   const showChatScreen = (e) => {
@@ -24,7 +25,6 @@ const SidebarDM = () => {
   };
 
   //Searh Bar
-
   const [searchUser, setSearchUser] = useState("");
 
   return (
@@ -37,7 +37,7 @@ const SidebarDM = () => {
           setSearchUser(event.target.value);
         }}
       />
-      {rawUserList[0]
+      {/* {rawUserList[0]
         .filter((value) => {
           if (searchUser === "") {
             return value;
@@ -60,7 +60,42 @@ const SidebarDM = () => {
               <box-icon name="user-circle"></box-icon> {user.email}{" "}
             </li>
           );
-        })}
+        })} */}
+
+        {allMessages
+        .filter((value) => {
+          if (searchUser === "") {
+            return value;
+          } else if (
+            value[0].receiver.uid.toLowerCase().includes(searchUser.toLowerCase())
+          ) {
+            return value;
+          }
+        })
+        .map((directMessages) => {
+          let receiver;
+          
+          if(directMessages[0].receiver.id != userDetails[0].id){
+            receiver = directMessages[0].receiver;
+          } else {
+            receiver = directMessages[0].sender;
+          }
+          const receiverName = receiver.name ? receiver.name : receiver.email;
+
+          return (
+            <li
+            key={receiver.id}
+            id={receiver.id}
+            name={receiverName}
+            type="User"
+            onClick={showChatScreen}
+            >
+            <box-icon name="user-circle"></box-icon> {receiver.email.split('@').shift()}{" "}
+          </li>
+          )
+         })
+
+        }
     </>
   );
 };
