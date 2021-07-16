@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import UserProvider from './api/user-provider.js';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import SignOut from './components/SignOut/SignOut';
 import MainPage from './components/MainPage/MainPage';
 
 
@@ -15,6 +16,9 @@ function App() {
     if (data){
       setIsLoggedIn(true);
       }
+    else{
+      setIsLoggedIn(false);
+    }
   }, [])
 
   return (
@@ -24,9 +28,10 @@ function App() {
           <Switch>
             {!isLoggedIn && <Route path='/' exact component={Login}/>}
             {isLoggedIn && <Route path='/' exact component={MainPage}/>}
-            <Route path='/Login' exact component={Login}/>
-            <Route path='/MainPage' component={MainPage}/>
             <Route path='/Signup' component={Signup}/>
+            <Route path='/Login' component={Login} />
+            <Route path='/MainPage' component={MainPage} />
+            <Route path='/SignOut' component={SignOut} />
           </Switch>
         </Router>
       </UserProvider>

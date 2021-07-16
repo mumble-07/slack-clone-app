@@ -13,7 +13,6 @@ const ChatScreenDropDown = () => {
   const {type, receivers} = chatScreenData;
   const [remainingUsers, setRemainingUsers] = useState(rawUserList);
   const [show,setShow]=useState(true)
- 
 
   const setCurrentReceiver = (e) => {
     //set receivers in UserContext
@@ -66,15 +65,17 @@ const ChatScreenDropDown = () => {
             return <div key={receiver.id} id={receiver.id}><img src={user1} alt="user"/><h5>{receiver.name}</h5><button className="remove-button"id={receiver.id} onClick={removeReceiver} >&times;</button></div>
           })}
         </div>
-        {show? <ul className="receiver-list"> 
+        {show ? <ul className="receiver-list">
           {remainingUsers[0]?.map((rawUser, index) => {
              const userName = rawUser.name !== null ? rawUser.name : rawUser.email
               return <li key={index} id={rawUser.id} name={userName} type="User" onClick={setCurrentReceiver}><img src={user1} alt="user" />{userName}</li>
             })
           }
-        </ul>:null }
-        <button className="show-hide-list" onClick ={()=>setShow(true)}>+</button>
-        <button className="show-hide-list" onClick ={()=>setShow(false)}>Hide</button>
+            </ul> : null}
+        <div className="show-hide-container">
+          <button className="show-hide-list" onClick ={()=>setShow(true)}>+</button>
+          <button className="show-hide-list" onClick ={()=>setShow(false)}>x</button>
+        </div>
       </> :
       <>
         <div className="pin-items">

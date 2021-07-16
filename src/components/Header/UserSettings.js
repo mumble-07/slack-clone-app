@@ -23,9 +23,11 @@ const UserSettings = (props) => {
         props.isUserActive();
     }
 
-    const signOutHandler = (e) => {
+
+    const logOutHandler = () => {
         localStorage.clear()
-        window.location.assign('http://localhost:3000/')
+        window.location.replace('/Login')
+
     }
 
     const UserSettingsDiv = () => {
@@ -50,7 +52,7 @@ const UserSettings = (props) => {
                     <div className="btn__user-settings" group="5" onClick={displayProfileHandler}>View Profile</div>
                 </div>
                 
-                <div className="btn__user-settings sign-out" onClick={signOutHandler}>Sign-out</div>
+                <div className="btn__user-settings sign-out" onClick={logOutHandler}>Sign-out</div>
             </div>
         )
     }

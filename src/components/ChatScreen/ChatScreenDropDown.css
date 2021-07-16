@@ -135,3 +135,18 @@
 .remove-button:hover {
   color: black;
 }
+
+.show-hide-container{
+  position: fixed;
+  right: 5px;
+}
+
+.show-hide-list {
+  font-size: 15px;
+  color: white;
+  background-color: darkgray;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}

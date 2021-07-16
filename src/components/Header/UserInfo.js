@@ -8,7 +8,7 @@ import userInactive from "../../assets/userInactive.svg";
 
 
 
-const UserInfo = () => {
+const UserInfo = (props) => {
 
     const [isDisplaySettings, setDisplaySettings] = useState(false);
     const [isDisplayProfile, setDisplayProfile] = useState(false);

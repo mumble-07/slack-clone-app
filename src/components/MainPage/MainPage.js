@@ -6,19 +6,19 @@ import { Link } from "react-router-dom";
 
 
 const Mainpage = () => {
-  // const { userDetails, userListHeaders, chatScreenData } =
-  //   useContext(UserContext);
+    const { userDetails, userListHeaders, chatScreenData } =
+      useContext(UserContext);
 
-  // const data = JSON.parse(localStorage.getItem("userDetails"));
-  // if (data) {
-  //   userDetails.push(data);
-  // }
+    const data = JSON.parse(localStorage.getItem("userDetails"));
+    if (data) {
+      userDetails.push(data);
+    }
 
   return (
     <Link to="/MainPage" style={{ textDecoration: "none", cursor: "default" }}>
       <div className="main-page">
         <div className="main-page-header">
-          <Header />
+          <Header/>
         </div>
         <div className="main-page-sidebar">
           <Sidebar />

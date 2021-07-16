@@ -35,31 +35,6 @@ const SidebarDM = () => {
           setSearchUser(event.target.value);
         }}
       />
-      {/* {rawUserList[0]
-        .filter((value) => {
-          if (searchUser === "") {
-            return value;
-          } else if (
-            value.uid.toLowerCase().includes(searchUser.toLowerCase())
-          ) {
-            return value;
-          }
-        })
-        .map((user) => {
-          const userName = user.name ? user.name : user.email;
-          return (
-            <li
-              key={user.id}
-              id={user.id}
-              name={userName}
-              type="User"
-              onClick={showChatScreen}
-            >
-              <box-icon name="user-circle"></box-icon> {user.email}{" "}
-            </li>
-          );
-        })} */}
-
         {allMessages
         .filter((value) => {
           if (searchUser === "") {
