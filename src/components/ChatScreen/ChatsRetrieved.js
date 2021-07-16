@@ -6,12 +6,6 @@ import axios from "axios";
 import parse from "html-react-parser";
 
 const ChatsRetrieved = () => {
-<<<<<<< HEAD
-  const { currentMessage, userDetails, chatScreenData, userListHeaders } =
-    useContext(UserContext);
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-=======
     const { currentMessage, userDetails, chatScreenData, userListHeaders } =  useContext(UserContext);
     const [messages, setMessages] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -40,7 +34,6 @@ const ChatsRetrieved = () => {
         setIsLoading(true)
         retrieveMessage();
     }, [chatScreenData.receivers])
->>>>>>> c2a7811c6655514d788a0eb048eae485a667d718
 
   const retrieveMessage = () => {
     const storage = JSON.parse(localStorage.getItem("params"));
@@ -85,9 +78,7 @@ const ChatsRetrieved = () => {
     } else return;
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("userDetails", JSON.stringify(userDetails));
-  // });
+  
 
   //call retrive message only when receivers change
   useEffect(() => {
@@ -95,54 +86,16 @@ const ChatsRetrieved = () => {
     retrieveMessage();
   }, [chatScreenData.receivers]);
 
-<<<<<<< HEAD
+
   //set time on component mount and clear on umnount
   useEffect(() => {
-    setInterval(retrieveMessage, 130000);
+    setInterval(retrieveMessage, 1000);
     return function cleanup() {
       clearInterval(retrieveMessage);
     };
   }, []);
-=======
 
-    return(
-        <div>
-            {isLoading && <div className="no-message__alert"><h5>Loading...</h5></div>}
-
-            {!isLoading && 
-                (messages?.length > 0 ?
-                    <ul className="chat-container">
-                        {messages?.map(message => {
-                            const messageContent = message.body;
-                            const name = message.sender.name ? message.sender.name :  message.sender.email;
-                            const time = new Date(message.created_at).toLocaleTimeString();
-                            return (
-                                <li key={message.id} className="chat-item-container">
-                                    <div className="chat__user-image">
-                                        <img src={user1} alt="sender image" />
-                                    </div>
-                                    <div className="chat-item">
-                                        <div className="chat-item__header">
-                                            <h5>{name}</h5>
-                                            <span className="chat-time">{time}</span>
-                                        </div>
-                                        <div className="chat__content">
-                                            {parse(messageContent)}
-                                        </div>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                    :
-                    <div className="no-message__alert"><h5>No available message.</h5></div>
-                )
-            }
-        </div>
-    )
->>>>>>> c2a7811c6655514d788a0eb048eae485a667d718
-
-  return (
+ return (
     <div>
       {isLoading && <div>Loading messages...</div>}
       {!isLoading && (

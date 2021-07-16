@@ -64,6 +64,16 @@
   color: black;
 }
 
+
+.show-hide-list {
+  font-size: 15px;
+  color: white;
+  background-color: darkgray;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
 .add-members-icon{
   margin-left: 10px;
   color: black;
