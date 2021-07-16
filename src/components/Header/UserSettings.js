@@ -23,9 +23,11 @@ const UserSettings = (props) => {
         props.isUserActive();
     }
 
+
     const logOutHandler = () => {
         localStorage.clear()
         window.location.replace('/Login')
+
     }
 
     const UserSettingsDiv = () => {

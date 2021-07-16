@@ -1,16 +1,12 @@
 import { useContext } from "react";
-import axios from "axios";
 import UserContext from "../../api/user-context.js";
 import { useState } from "react";
 import {v4} from 'uuid';
 
 const SidebarDM = () => {
   const {
-    rawUserList,
     userDetails,
-    userListHeaders,
     chatScreenData,
-    currentMessage,
     allMessages,
   } = useContext(UserContext);
 
@@ -23,6 +19,7 @@ const SidebarDM = () => {
         type: e.currentTarget.type,
       },
     ];
+    localStorage.setItem("params", JSON.stringify(chatScreenData));
   };
 
   //Searh Bar
@@ -42,16 +39,14 @@ const SidebarDM = () => {
         .filter((value) => {
           if (searchUser === "") {
             return value;
-          } else if (
-            value[0].receiver.uid.toLowerCase().includes(searchUser.toLowerCase())
-          ) {
-            return value;
+          } else {
+            return value[0].receiver.uid.toLowerCase().includes(searchUser.toLowerCase())
           }
         })
         .map((directMessages) => {
           let receiver;
           
-          if(directMessages[0].receiver.id != userDetails[0].id){
+          if(directMessages[0].receiver.id !== userDetails[0].id){
             receiver = directMessages[0].receiver;
           } else {
             receiver = directMessages[0].sender;

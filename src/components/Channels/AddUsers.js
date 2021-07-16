@@ -10,7 +10,6 @@ import {v4} from 'uuid';
 const AddUsers = (props) => {
     const {userListHeaders,rawUserList, additionalMembers, chatScreenData} = useContext(UserContext)
     
-    const{receivers} = chatScreenData
     console.log(chatScreenData)
     
     const userArrayHandler = (e) => {

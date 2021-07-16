@@ -1,7 +1,6 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../api/user-context.js";
-
 import axios from "axios";
 import classes from "./Login.module.css";
 import { FcGoogle } from "react-icons/fc";
@@ -38,6 +37,8 @@ const LoginBody = () => {
         history.push("/MainPage");
       })
       .catch((error) => console.error("Error fetching data from API"));
+
+    localStorage.clear("params") // Clear params of other user saved in local storage;
   };
 
   return (
