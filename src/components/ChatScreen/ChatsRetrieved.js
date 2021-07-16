@@ -6,15 +6,12 @@ import axios from "axios";
 import parse from "html-react-parser";
 
 const ChatsRetrieved = () => {
-    const { currentMessage, userDetails, chatScreenData, userListHeaders } =  useContext(UserContext);
-    const [messages, setMessages] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
 
-    //call retrive message only when receivers change
-    useEffect(() => {
-        setIsLoading(true)
-        retrieveMessage();
-    }, [chatScreenData.receivers])
+  
+  const { currentMessage, userDetails, chatScreenData, userListHeaders } =  useContext(UserContext);
+  const [messages, setMessages] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
 
     useEffect(() => {
       setInterval(retrieveMessage, 1000)
@@ -24,47 +21,43 @@ const ChatsRetrieved = () => {
   }, [])
 
   const retrieveMessage = () => {
+
     const storage = JSON.parse(localStorage.getItem("params"));
     const storage2 = JSON.parse(localStorage.getItem("userDetails"));
-    localStorage.setItem("params", JSON.stringify(chatScreenData));
-    console.log(storage)
     
-    if (storage && storage2 && storage.type!=="new") {
+    let senderID, receiverClass, receiverID;
+
+    if (storage && storage2) { //if local storage has values, use saved values and assign to senderID, receiverClass, receiverID
+      senderID = storage2[0].id;
+      receiverClass = storage.receivers[0]?.type
+      receiverID = storage.receivers[0].id
+    } 
+    else { //use the values from any selected user(receiver)/channel
+      senderID = storage2[0].id;
+      receiverClass = chatScreenData.receivers[0]?.type
+      receiverID = chatScreenData.receivers[0]?.id;
+    }
+
+    if (chatScreenData.receivers.length !== 0) { //retrieve messages when chatScreenData has value for receivers
       axios
-        .get("http://206.189.91.54//api/v1/messages", {
-          headers: userListHeaders,
-          params: {
-            sender_id: storage2.id,
-            receiver_class: storage.type,
-            receiver_id: storage.receivers[0].id,
-          },
-        })
-        .then((response) => response.data.data)
-        .then((result) => {
-          currentMessage[0] = result;
-          setMessages(currentMessage[0]);
-          setIsLoading(false);
-        })
-        .catch((error) => error);
-    }else if (chatScreenData.receivers.length !== 0) {
-      axios
-        .get("http://206.189.91.54//api/v1/messages", {
-          headers: userListHeaders,
-          params: {
-            sender_id: userDetails[0].id.toString(),
-            receiver_class: "User",
-            receiver_id: chatScreenData.receivers[0].id,
-          },
-        })
-        .then((response) => response.data.data)
-        .then((result) => {
-          currentMessage[0] = result;
-          setMessages(currentMessage[0]);
-          setIsLoading(false);
-        })
-        .catch((error) => error);
-    } else return;
-  };
+      .get("http://206.189.91.54//api/v1/messages", {
+        headers: userListHeaders,
+        params: {
+          sender_id: senderID,
+          receiver_class: receiverClass,
+          receiver_id: receiverID,
+        },
+      })
+      .then((response) => response.data.data)
+      .then((result) => {
+        currentMessage[0] = result;
+        console.log(currentMessage[0]);
+        setMessages(currentMessage[0]);
+        setIsLoading(false);
+      })
+      .catch((error) => error);
+    };
+  }
 
 
   //call retrive message only when receivers change

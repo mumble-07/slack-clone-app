@@ -3,8 +3,7 @@ import ChatScreen from "../ChatScreen/ChatScreen";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "../../api/user-context";
+
 
 const Mainpage = () => {
     const { userDetails, userListHeaders, chatScreenData } =

@@ -1,10 +1,9 @@
 import "./ChatScreenDropDown.css";
 import { TiPin } from "react-icons/ti";
 import { TiPlus } from "react-icons/ti";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../api/user-context";
 import user1 from "../../assets/user1.png";
-
 
 
 
@@ -23,12 +22,15 @@ const ChatScreenDropDown = () => {
       type: e.target.type
     })
 
+    //filter out chosen receiver from list
     setRemainingUsers(prevValue => {
       const filteredValue = [];
       filteredValue[0] = prevValue[0].filter(el => { return el.id.toString() !== e.target.id })
       return filteredValue;
     })
-   
+
+    //store chatSScreenData: for retrieving messages (chatsRetrieved.js) when page is refreshed.
+    localStorage.setItem("params", JSON.stringify(chatScreenData));
     console.log(receivers)
   }
 
@@ -48,6 +50,7 @@ const ChatScreenDropDown = () => {
 
     console.log(receivers)
     console.log(removedReceiver)
+    if(receivers.length === 0) {localStorage.removeItem("params")}
 
   }
 
@@ -59,13 +62,13 @@ const ChatScreenDropDown = () => {
         <h3 className="to__newUser">To:</h3>
         <div className="selected-receivers">
           {receivers?.map(receiver => {
-            return <div key={receiver.id} id={receiver.id}><img src={user1}/><h5>{receiver.name}</h5><button className="remove-button"id={receiver.id} onClick={removeReceiver} >&times;</button></div>
+            return <div key={receiver.id} id={receiver.id}><img src={user1} alt="user"/><h5>{receiver.name}</h5><button className="remove-button"id={receiver.id} onClick={removeReceiver} >&times;</button></div>
           })}
         </div>
         {show ? <ul className="receiver-list">
           {remainingUsers[0]?.map((rawUser, index) => {
              const userName = rawUser.name !== null ? rawUser.name : rawUser.email
-              return <li key={index} id={rawUser.id} name={userName} type="User" onClick={setCurrentReceiver}><img src={user1} />{userName}</li>
+              return <li key={index} id={rawUser.id} name={userName} type="User" onClick={setCurrentReceiver}><img src={user1} alt="user" />{userName}</li>
             })
           }
             </ul> : null}

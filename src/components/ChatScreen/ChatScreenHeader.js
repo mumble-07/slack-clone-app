@@ -24,6 +24,10 @@ const ChatScreenHeader = () => {
     setOpenAddUsers(false)
   }
 
+
+
+  const storage = JSON.parse(localStorage.getItem("params"));
+
   const openChannelDetailsHandler = () => {
     setOpenChannelDetails(true)
   }
@@ -32,13 +36,14 @@ const ChatScreenHeader = () => {
     setOpenChannelDetails(false)
   }
 
+
   return (
     <div className="chat-screen-header">
       {type === "new" ? <h4 className="chat-screen-label new-message">New Message</h4> :
       <>
         <button type="button" className="chat-screen-header-button">
           <TiLockClosed className="lock-icon" />
-          <h1 className="chat-screen-label">{receivers[0]?.name}</h1>
+          <h1 className="chat-screen-label">{storage? storage.receivers[0].name : receivers[0]?.name}</h1>
           <TiArrowSortedDown />
         </button>
         <div className="chat-screen-header-right-side">

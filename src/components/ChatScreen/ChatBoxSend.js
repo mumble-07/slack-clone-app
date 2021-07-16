@@ -6,7 +6,7 @@ import SendIcon from "@material-ui/icons/Send";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 
 const ChatBoxSend = () => {
-  const { userDetails, userListHeaders, chatScreenData } =
+  const { userListHeaders, chatScreenData } =
     useContext(UserContext);
   const { receivers } = chatScreenData;
   const [message, setMessage] = useState("");

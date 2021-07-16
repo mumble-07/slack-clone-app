@@ -7,12 +7,13 @@ const SidebarChannel = () => {
     const {channelList, chatScreenData} = useContext(UserContext);
 
     const showChatScreen = (e) => {
-    chatScreenData.type = e.currentTarget.type;
-    chatScreenData.receivers = [{ 
-        id: e.currentTarget.id,
-        name: e.currentTarget.getAttribute("name"),
-        type: e.currentTarget.type,
+        chatScreenData.type = e.currentTarget.type;
+        chatScreenData.receivers = [{ 
+            id: e.currentTarget.id,
+            name: e.currentTarget.getAttribute("name"),
+            type: e.currentTarget.type,
         }]
+        localStorage.setItem("params", JSON.stringify(chatScreenData));
     }
         
         return(

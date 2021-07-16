@@ -65,7 +65,7 @@ const Sidebar = () => {
       .get("http://206.189.91.54//api/v1/users", { headers: userListHeaders })
       .then((res) => {
         const { data } = res;
-        if (data.length == 0) {
+        if (data.length === 0) {
           console.log("No available users");
           return;
         }
@@ -97,6 +97,8 @@ const Sidebar = () => {
   const setChatScreenData = () => {
     chatScreenData["type"] = "new";
     chatScreenData["receivers"] = [];
+    
+    localStorage.removeItem("params")
   };
 
   return (
