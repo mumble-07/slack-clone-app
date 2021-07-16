@@ -6,11 +6,21 @@ import "boxicons";
 
 import SidebarChannel from "./SidebarChannel";
 import SidebarDM from "./SidebarDM";
+import AddChannel from '../Channels/AddChannel';
 
 const Sidebar = () => {
-  const { chatScreenData } = useContext(UserContext); //modify current receiver when EDIT button is clicked
+  const { chatScreenData, 
+    modalsDisplay, 
+    userDetails, 
+    allMessages, 
+    userListHeaders, 
+    channelList, 
+    rawUserList, 
+    setUpHeaders} = useContext(UserContext); //modify current receiver when EDIT button is clicked
+
   const [toggleChannel, setToggleChannel] = useState(false);
   const [toggleDM, setToggleDM] = useState(false);
+  const [openChannel, setOpenChannel] = useState(false)
 
   const toggleChannelHandler = () => {
     setToggleChannel((prevValue) => !prevValue);
@@ -20,9 +30,35 @@ const Sidebar = () => {
     setToggleDM((prevValue) => !prevValue);
   };
 
-  const { userListHeaders, channelList, rawUserList, setUpHeaders } =
-    useContext(UserContext);
+  const openChannelHander = () => {
+    setOpenChannel(true)
+  }
 
+  const closeChannelHandler = () => {
+    setOpenChannel(false)
+  }
+   
+  const retrieveAllMessages = () => {
+    for (const list of rawUserList[0]) {
+      axios.get("http://206.189.91.54//api/v1/messages", {
+      headers: userListHeaders, 
+      params:  {
+      "sender_id": userDetails[0].id.toString(),
+      "receiver_class": "User",
+      "receiver_id": list.id.toString(),
+      },})
+      .then((response) => response.data.data)
+      .then((result) => {
+      if(result.length > 0) {
+        allMessages.push(result)
+      }
+      console.log(allMessages)
+      })
+      .catch((error) => error)
+    }
+  }
+
+    
   useEffect(() => {
     const storage = localStorage.getItem("user");
     if (storage) {
@@ -35,15 +71,11 @@ const Sidebar = () => {
       setUpHeaders(accessToken, client, expiry, uid);
     }
     axios
-      .get("http://206.189.91.54//api/v1/channels", {
+      .get("http://206.189.91.54//api/v1/channel/owned", {
         headers: userListHeaders,
       })
       .then((res) => {
         const { data } = res;
-        if ((data.errors = "No available channels")) {
-          console.log(data.errors);
-          return;
-        }
         channelList.push(data);
         console.log(channelList);
       })
@@ -71,9 +103,12 @@ const Sidebar = () => {
         }
         rawUserList.push(data.data);
         console.log(rawUserList);
+        retrieveAllMessages(); //retrieve all DM
       })
       .catch((error) => console.error("Error fetching data from API"));
   }, []);
+
+
 
   const setChatScreenData = () => {
     chatScreenData["type"] = "new";
@@ -121,8 +156,9 @@ const Sidebar = () => {
                 <box-icon name="lock-alt"></box-icon>batch 9
               </li>
               {toggleChannel && <SidebarChannel />}
-              <li>
-                <box-icon name="lock-alt"></box-icon>Add channels
+              <li onClick={openChannelHander}>
+                <box-icon name="lock-alt"/>Add channels
+                {openChannel && <AddChannel onClose={closeChannelHandler}/>}
               </li>
             </ul>
           </li>

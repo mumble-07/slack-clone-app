@@ -3,10 +3,20 @@ import ChatScreen from "../ChatScreen/ChatScreen";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../api/user-context";
 
 const Mainpage = () => {
+  // const { userDetails, userListHeaders, chatScreenData } =
+  //   useContext(UserContext);
+
+  // const data = JSON.parse(localStorage.getItem("userDetails"));
+  // if (data) {
+  //   userDetails.push(data);
+  // }
+
   return (
-    <Link to="/MainPage" style={{textDecoration: "none", cursor: "default"}} >
+    <Link to="/MainPage" style={{ textDecoration: "none", cursor: "default" }}>
       <div className="main-page">
         <div className="main-page-header">
           <Header />

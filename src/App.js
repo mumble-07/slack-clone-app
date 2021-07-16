@@ -2,14 +2,12 @@ import './App.css';
 import {useState, useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import UserProvider from './api/user-provider.js';
-import UserContext from './api/user-context.js';
-import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import MainPage from './components/MainPage/MainPage';
 
-function App() {
 
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -19,9 +17,6 @@ function App() {
       }
   }, [])
 
-  const test = () => {
-    console.log('test');
-  }
   return (
     <>
       <UserProvider>

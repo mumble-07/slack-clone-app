@@ -1,14 +1,25 @@
 import { TiLockClosed } from "react-icons/ti";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { TiPhoneOutline } from "react-icons/ti";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import "./ChatScreenHeader.css";
 import user1 from "../../assets/user1.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../api/user-context";
+import AddUsers from "../Channels/AddUsers";
 
 const ChatScreenHeader = () => {
   const {chatScreenData} = useContext(UserContext);
+  const [openAddUsers, setOpenAddUsers] = useState(false)
   const {type, receivers} = chatScreenData;
+  
+  const openAddUsersHandler = () => {
+    setOpenAddUsers(true)
+  }
+
+  const closeAddUsersHandler = () => {
+    setOpenAddUsers(false)
+  }
 
   return (
     <div className="chat-screen-header">
@@ -21,10 +32,9 @@ const ChatScreenHeader = () => {
         </button>
         <div className="chat-screen-header-right-side">
           <TiPhoneOutline className="call-icon" />
-          <div className="avatar-icons">
-            <img src={user1} />
-          </div>
+          {receivers[0]?.type === "Channel" ? <AddCircleIcon className="add-members-icon" onClick={openAddUsersHandler}/> : <div className="avatar-icons"><img src={user1}/> </div>}
         </div>
+          {openAddUsers && <AddUsers onClose={closeAddUsersHandler}/>}
       </>
       }
     </div>

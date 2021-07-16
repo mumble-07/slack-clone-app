@@ -11,7 +11,19 @@ const UserProvider = (props) => {
     chatScreenData,
     params,
     currentMessage,
+    allMessages,
+    additionalMembers,
   } = useContext(UserContext);
+
+  const [modalsDisplay, setModalsDisplay] = useState(false)
+
+  const closeModals = () => {
+    setModalsDisplay(false)
+  }
+
+  const openModals = () => {
+    setModalsDisplay(true)
+  }
 
   const setUpHeaders = (accessToken, client, expiry, uid) => {
     userListHeaders["access-token"] = accessToken;
@@ -19,7 +31,7 @@ const UserProvider = (props) => {
     userListHeaders["expiry"] = expiry;
     userListHeaders["uid"] = uid;
   };
-  
+ 
 
   return (
     <UserContext.Provider
@@ -33,6 +45,11 @@ const UserProvider = (props) => {
         chatScreenData,
         params,
         currentMessage,
+        closeModals,
+        openModals,
+        modalsDisplay,
+        allMessages,
+        additionalMembers
       }}
     >
       {props.children}
