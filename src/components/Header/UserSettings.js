@@ -24,9 +24,8 @@ const UserSettings = (props) => {
     }
 
     const signOutHandler = (e) => {
-        // window.location('/Login')
-        history.push('/Login')
         localStorage.clear()
+        window.location.assign('http://localhost:3000/')
     }
 
     const UserSettingsDiv = () => {

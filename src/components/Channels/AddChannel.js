@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import {TextField, InputAdornment, Button} from '@material-ui/core';
 import UserContext from '../../api/user-context.js'
 import Modal from '../UI/Modal';
@@ -14,7 +14,7 @@ const initialState = {
 
 const AddChannel = (props) => {
     const [formData,setFormData] = useState(initialState)
-    const {rawUserList, userListHeaders,closeModals, channelDetails} = useContext(UserContext);
+    const {rawUserList, userListHeaders, channelDetails} = useContext(UserContext);
     
     const addMembersHandler = (e) => {
         formData["user-ids"].push(Number(e.target.id))
