@@ -11,7 +11,8 @@ const UserProvider = (props) => {
     chatScreenData,
     params,
     currentMessage,
-    channelDetails,
+    modalsDisplay,
+    allMessages,
   } = useContext(UserContext);
 
   const [modalsDisplay, setModalDisplay] =useState(false)
@@ -47,7 +48,7 @@ const UserProvider = (props) => {
         closeModals,
         openModals,
         modalsDisplay,
-        channelDetails
+        allMessages
       }}
     >
       {props.children}

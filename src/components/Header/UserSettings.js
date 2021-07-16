@@ -11,6 +11,7 @@ const UserSettings = (props) => {
 
     const[isUserActive, setUserActive] = useState(false);
     const {userDetails} = useContext(UserContext);
+    const history = useHistory();
 
     const displayProfileHandler = () => {
         props.showProfile(true);
@@ -22,8 +23,9 @@ const UserSettings = (props) => {
         props.isUserActive();
     }
 
-    const signOutHandler = () => {
-        window.location('/Login')
+    const signOutHandler = (e) => {
+        // window.location('/Login')
+        history.push('/Login')
         localStorage.clear()
     }
 

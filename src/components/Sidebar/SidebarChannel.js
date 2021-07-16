@@ -16,15 +16,14 @@ const SidebarChannel = () => {
     }
         
         return(
-            <>    
+            <>
             {channelList[0].errors ? <></> : channelList[0].data.map(channel => {
                 return (
                     <li key={v4()} id={channel.id} name={channel.name} type="Channel" onClick={showChatScreen}><box-icon name='lock-alt' ></box-icon> {channel.name}</li>
                     )
                 })}
             </>
-            )
+        )
 }
 
 export default SidebarChannel;
-

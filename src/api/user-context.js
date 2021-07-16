@@ -21,7 +21,10 @@ const UserContext = createContext({
     receiver_id: "",
   },
   currentMessage: [],
-  channelDetails: [],
+  modalsDisplay: {
+    channelModal: false,
+  },
+  allMessages: [],
 });
 
 export default UserContext;
